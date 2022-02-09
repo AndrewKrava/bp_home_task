@@ -2,8 +2,19 @@
 import React, { FC } from 'react';
 import { useRoutes, Navigate } from 'react-router-dom';
 
+import { JsCmp } from '../components/JsCmp';
+
+
 // Pages
-import { Main, Register, Items, Item } from '../pages';
+import { Main, JavaScript, ReactPage } from '../pages';
+
+const Cmp = () => {
+    return (
+        <div>
+            Hello
+        </div>
+    );
+};
 
 export const Public: FC = () => {
     const routes = useRoutes([
@@ -11,13 +22,16 @@ export const Public: FC = () => {
             path:     '',
             element:  <Main />,
             children: [
-                { path: 'register', element: <Register /> },
+                { path: 'js', element: <JavaScript /> },
                 {
-                    path:     'items',
-                    element:  <Items />,
-                    children: [{ path: ':id', element: <Item /> }],
+                    path:     'react',
+                    element:  <ReactPage />,
+                    children: [
+                        { path: 'some', element: <JsCmp /> },
+                        { path: 'two', element: <Cmp /> },
+                    ],
                 },
-                { path: '*', element: <Navigate to = 'register' /> },
+                // { path: '*', element: <Navigate to = 'register' /> },
             ],
         },
     ]);

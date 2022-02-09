@@ -18,8 +18,8 @@ const Main: FC = () => {
     return (
         <Container>
             <Nav>
-                <Link to = 'register'>Registation</Link>
-                <Link to = '/items'>Items</Link>
+                <Link to = '/js'>JavaScript</Link>
+                <Link to = '/react'>React</Link>
             </Nav>
             <Breadcrumbs>
                 <Crumb to = '/'>
@@ -37,7 +37,7 @@ const Main: FC = () => {
                             <Crumb
                                 key = { path }
                                 to = { path }>
-                                {crumb}
+                                {crumb.toUpperCase()}
                             </Crumb>
                         )
                     );

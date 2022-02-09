@@ -1,6 +1,8 @@
 // Core
 import React, { FC } from 'react';
-import { useParams } from 'react-router';
+
+// Bus
+// import {} from '../../../bus/'
 
 // Components
 import { ErrorBoundary } from '../../components';
@@ -13,18 +15,16 @@ type PropTypes = {
     /* type props here */
 }
 
-const Item: FC<PropTypes> = () => {
-    const { id } = useParams<'id'>();
-
+const JavaScript: FC<PropTypes> = () => {
     return (
         <S.Container>
-            <p>Page Item: { id }</p>
+            Page: JavaScript
         </S.Container>
     );
 };
 
 export default () => (
     <ErrorBoundary>
-        <Item />
+        <JavaScript />
     </ErrorBoundary>
 );

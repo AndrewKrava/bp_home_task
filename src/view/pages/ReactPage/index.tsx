@@ -1,5 +1,8 @@
 // Core
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+
+// import { JsCmp } from '../../components/JsCmp';
 
 // Bus
 // import {} from '../../../bus/'
@@ -15,16 +18,20 @@ type PropTypes = {
     /* type props here */
 }
 
-const Register: FC<PropTypes> = () => {
+const ReactPage: FC<PropTypes> = () => {
     return (
         <S.Container>
-            Page: Register
+            Page: ReactPage
+            <Link to = '/react/some'> Comp</Link>
+            <Link to = '/react/two'> Two</Link>
+
+            {/* <JsCmp /> */}
         </S.Container>
     );
 };
 
 export default () => (
     <ErrorBoundary>
-        <Register />
+        <ReactPage />
     </ErrorBoundary>
 );
