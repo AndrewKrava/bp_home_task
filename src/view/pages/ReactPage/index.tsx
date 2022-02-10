@@ -1,8 +1,7 @@
 // Core
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
-// import { JsCmp } from '../../components/JsCmp';
 
 // Bus
 // import {} from '../../../bus/'
@@ -21,11 +20,11 @@ type PropTypes = {
 const ReactPage: FC<PropTypes> = () => {
     return (
         <S.Container>
-            Page: ReactPage
-            <Link to = '/react/some'> Comp</Link>
-            <Link to = '/react/two'> Two</Link>
-
-            {/* <JsCmp /> */}
+            <div className = 'page-title'>Page: ReactPage
+                <Link to = '/react/news'>News</Link>
+                <Link to = '/react/accordion'> Accordion</Link>
+            </div>
+            <Outlet />
         </S.Container>
     );
 };
