@@ -15,7 +15,13 @@ export const Public: FC = () => {
             path:     '',
             element:  <Main />,
             children: [
-                { path: 'js', element: <JavaScript /> },
+                { 
+                    path: 'js', 
+                    element: <JavaScript />,
+                    children: [
+                        {path: ':id', element: }
+                    ] 
+                },
                 {
                     path:     'react',
                     element:  <ReactPage />,
