@@ -8,13 +8,6 @@ import { JsCmp } from '../components/JsCmp';
 // Pages
 import { Main, JavaScript, ReactPage } from '../pages';
 
-const Cmp = () => {
-    return (
-        <div>
-            Hello
-        </div>
-    );
-};
 
 export const Public: FC = () => {
     const routes = useRoutes([
@@ -27,8 +20,7 @@ export const Public: FC = () => {
                     path:     'react',
                     element:  <ReactPage />,
                     children: [
-                        { path: 'some', element: <JsCmp /> },
-                        { path: 'two', element: <Cmp /> },
+                        { path: 'news', element: <JsCmp /> },
                     ],
                 },
                 // { path: '*', element: <Navigate to = 'register' /> },
