@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 // import {} from '../../../bus/'
 
 // Components
-import { ErrorBoundary } from '../../components';
+import { ErrorBoundary, JsCmp } from '../../components';
 
 // Styles
 import * as S from './styles';
@@ -19,6 +19,8 @@ const JavaScript: FC<PropTypes> = () => {
     return (
         <S.Container>
             Page: JavaScript
+            {/* temp add JS cmp */}
+            <JsCmp />
         </S.Container>
     );
 };

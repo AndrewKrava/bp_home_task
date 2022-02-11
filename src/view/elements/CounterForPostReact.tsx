@@ -13,6 +13,7 @@ const CounterSpan = styled.span`
     font-size: ${({ mySize = 10 }: Content) => mySize}px;
     color: rgba(0, 0, 0, 0.6);
 
+
     &:before {
     /* content: '👋'; */
         content: ${(props) => props.text1};

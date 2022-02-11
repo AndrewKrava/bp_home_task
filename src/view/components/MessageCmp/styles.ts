@@ -2,30 +2,30 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  .accordion-item {
-    margin-bottom: 10px;
+    .accordion-item {
+        margin-bottom: 10px;
 
-    &:hover {
-        .accordion-question {
-            color: #000;
+        &:hover {
+            .accordion-question {
+                color: #000;
+            }
+        }
+
+        &.selected {
+            .accordion-question {
+                cursor: initial;
+                color: #4886FF;
+
+                &:after {
+                    content: '-';
+                    }
+            }
+
+            .accordion-answer {
+                display: inline-block;
+            }
         }
     }
-
-    &.selected {
-        .accordion-question {
-            cursor: initial;
-            color: #4886FF;
-
-            &:after {
-                content: '-';
-                }
-        }
-
-        .accordion-answer {
-            display: inline-block;
-        }
-    }
-  }
 
     .accordion-question {
         position: relative;

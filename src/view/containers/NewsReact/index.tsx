@@ -1,7 +1,12 @@
+/* eslint-disable no-plusplus */
 // Core
 import React, { FC, useState } from 'react';
 import moment from 'moment';
+
+// Components
 import { ArticleReact } from '../../components';
+
+// Elements
 import { TagReact } from '../../elements';
 import { CommentsCounterReact, LikesCounterReact } from '../../elements';
 
@@ -41,25 +46,25 @@ export const NewsReact: FC<PropTypes> = () => {
             <h2>Container: NewsReact</h2>
 
             <div className = 'news'>
-                {testData.map((el) => {
+                {listNews.map((news) => {
                     return (
                         <ArticleReact
-                            commentsCounter = { <CommentsCounterReact counts = { el.comments }/> }
-                            description = { el.description }
-                            key = { el.id }
+                            commentsCounter = { <CommentsCounterReact counts = { news.comments }/> }
+                            description = { news.description }
+                            key = { news.id }
                             likesCounter = {
                                 <LikesCounterReact
                                     click = { clickOnLikes }
                                     likes = {{
-                                        counts:  el.likes,
-                                        isLiked: el.isLiked,
-                                        id:      el.id,
+                                        counts:  news.likes,
+                                        isLiked: news.isLiked,
+                                        id:      news.id,
                                     }}
                                 /> }
-                            published = { moment(el.published).format('DD.MM.YYYY') }
-                            tagCmp = { <TagReact source = { el.tags } /> }
-                            title = { el.title }
-                            url = { el.image }
+                            published = { moment(news.published).format('DD.MM.YYYY') }
+                            tagCmp = { <TagReact source = { news.tags } /> }
+                            title = { news.title }
+                            url = { news.image }
                         />
                     );
                 })}
