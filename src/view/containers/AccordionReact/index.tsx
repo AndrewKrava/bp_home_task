@@ -1,6 +1,6 @@
 // Core
 import React, { FC, useState } from 'react';
-import { AccordionCmp } from '../../components';
+import { MessageCmp } from '../../components';
 
 // Bus
 // import {} from '../../../bus/'
@@ -10,16 +10,16 @@ import * as S from './styles';
 
 // Types
 type PropTypes = {
-    /* type props here */
+    title?: string;
 }
 
 //temp
 import data from '../../../bus/test_data/accordion.json';
 
-export const AccordionReact: FC<PropTypes> = () => {
+export const AccordionReact: FC<PropTypes> = (props) => {
     const [ messages, setMessages ] = useState(data);
 
-    function setSelected(id: number) {
+    function setSelectedMsg(id: number) {
         setMessages(
             messages.map((msg) => {
                 if (msg.id === id) {
@@ -33,6 +33,7 @@ export const AccordionReact: FC<PropTypes> = () => {
 
     return (
         <S.Container>
+<<<<<<< HEAD
             Container: AccordionReact
             {messages.map((acc, index) => {
                 return (
@@ -47,6 +48,24 @@ export const AccordionReact: FC<PropTypes> = () => {
                                 }
                             }
                             setSelected = {setSelected}
+=======
+            <div className = 'container-title'>
+                {props.title}
+            </div>
+            {data.map((acc, index) => {
+                return (
+                    <div key = { index }>
+                        <MessageCmp
+                            message = {
+                                {
+                                    id:         acc.id,
+                                    answer:     acc.answer,
+                                    isSelected: acc.isSelected,
+                                    question:   acc.question,
+                                }
+                            }
+                            setSelected = { setSelectedMsg }
+>>>>>>> fc3da7c000ed29e60bd76eec18e436db2951f0e6
 
                         />
                     </div>
@@ -54,4 +73,8 @@ export const AccordionReact: FC<PropTypes> = () => {
             })}
         </S.Container>
     );
+};
+
+AccordionReact.defaultProps = {
+    title: 'Accordion',
 };

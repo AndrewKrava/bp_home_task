@@ -1,5 +1,6 @@
 // Core
 import React, { FC } from 'react';
+import { CounterForPostReact } from '../../elements';
 
 // Bus
 // import {} from '../../../bus/'
@@ -24,8 +25,6 @@ export const ArticleReact: FC<PropTypes> = (props) => {
         <S.Container>
 
             <div className = 'title-cmp'>Component: ArticleReact</div>
-
-
             <header>
                 <div className = 'poster'>
                     <img

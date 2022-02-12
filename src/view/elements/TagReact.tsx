@@ -26,11 +26,11 @@ function showSource(sourceArr: string[]): React.ReactNode[] {
         console.log('key ', key);
 
         return (
-            <span
+            <div
                 className = 'tag'
                 key = { key }>
                 {tagName}
-            </span>
+            </div>
         );
     });
 }

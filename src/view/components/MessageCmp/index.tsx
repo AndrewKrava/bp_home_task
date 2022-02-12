@@ -20,7 +20,7 @@ type PropTypes = {
 
 }
 
-function setMessageClass(isSelected: boolean) {
+function setMessageClass(isSelected: boolean): string {
     if (isSelected) {
         return 'accordion-item selected';
     }
@@ -28,13 +28,14 @@ function setMessageClass(isSelected: boolean) {
     return 'accordion-item';
 }
 
-export const AccordionCmp: FC<PropTypes> = (props) => {
-    // const accClass =
+export const MessageCmp: FC<PropTypes> = (props) => {
     return (
         <S.Container>
             <div className = { setMessageClass(props.message.isSelected) }>
-                <div className = 'accordion-question'>
-                    <span onClick = { () => props.setSelected(props.message.id) }>{props.message.question}</span>
+                <div
+                    className = 'accordion-question'
+                    onClick = { () => props.setSelected(props.message.id) }>
+                    <span >{props.message.question}</span>
                 </div>
                 <p className = 'accordion-answer'>{props.message.answer}</p>
             </div>
