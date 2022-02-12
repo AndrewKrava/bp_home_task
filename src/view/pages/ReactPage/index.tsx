@@ -20,16 +20,10 @@ type PropTypes = {
 const ReactPage: FC<PropTypes> = () => {
     return (
         <S.Container>
-<<<<<<< HEAD
-            Page: ReactPage
-            <Link to = '/react/some'> Comp</Link>
-
-=======
             <div className = 'page-title'>Page: ReactPage
                 <Link to = '/react/news'>News</Link>
                 <Link to = '/react/accordion'> Accordion</Link>
             </div>
->>>>>>> b102aae4ee983cb6459546e3c532e4431aa127c7
             <Outlet />
         </S.Container>
     );
