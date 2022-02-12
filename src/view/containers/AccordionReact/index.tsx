@@ -33,22 +33,6 @@ export const AccordionReact: FC<PropTypes> = (props) => {
 
     return (
         <S.Container>
-<<<<<<< HEAD
-            Container: AccordionReact
-            {messages.map((acc, index) => {
-                return (
-                    <div key = { index }>
-                        <AccordionCmp
-                            message={
-                                {
-                                    id: acc.id,
-                                    answer: acc.answer,
-                                    isSelected: false,
-                                    question: acc.question
-                                }
-                            }
-                            setSelected = {setSelected}
-=======
             <div className = 'container-title'>
                 {props.title}
             </div>
@@ -65,7 +49,6 @@ export const AccordionReact: FC<PropTypes> = (props) => {
                                 }
                             }
                             setSelected = { setSelectedMsg }
->>>>>>> fc3da7c000ed29e60bd76eec18e436db2951f0e6
 
                         />
                     </div>
