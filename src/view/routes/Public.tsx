@@ -1,8 +1,7 @@
 // Core
 import React, { FC } from 'react';
-import { useRoutes,   BrowserRouter,
-    Routes,
-    Route, Navigate } from 'react-router-dom';
+import { useRoutes, Routes, Route, Navigate } from 'react-router-dom';
+
 
 // Container
 import { AccordionReact, Jscontainer, NewsReact } from '../containers';
@@ -12,46 +11,63 @@ import { AccordionReact, Jscontainer, NewsReact } from '../containers';
 import { Main, JavaScript, ReactPage } from '../pages';
 
 export const Public: FC = () => {
-    const routes = useRoutes([
-        {
-            path:     '',
-            element:  <Main />,
-            children: [
-                { 
-                    path: 'js', 
-                    element: <JavaScript />,
-                    children: [
-                        {path: '', element: <Jscontainer />}
-                    ] 
-                },
-                {
-                    path:     'react',
-                    element:  <ReactPage />,
-                    children: [
-                        { path: 'news', element: <NewsReact /> },
-                        { path: 'accordion', element: <AccordionReact /> },
-                    ],
-                },
-                // { path: '*', element: <Navigate to = 'register' /> },
-            ],
-        },
-    ]);
-
-    // return routes;
     return (
         <Routes>
-            <Route path="" element={<Main />} >
+            <Route
+                element = { <Main /> }
+                path = '' >
                 {/* <Route index element={<Home />} /> */}
-                <Route path='js' element={ <JavaScript /> } />
+                <Route
+                    element = { <JavaScript /> }
+                    path = 'js'>
+                    <Route
+                        element = { <Jscontainer /> }
+                        path = 'js-lessons-container'
+                    />
+                </Route>
 
-                <Route path="react" element={<ReactPage />}>
-                    {/* <Route path=":teamId" element={<Team />} /> */}
-                    <Route path="news" element={<NewsReact />} />
-                    <Route path="accordion" element={<AccordionReact />} />
+                <Route
+                    element = { <ReactPage /> }
+                    path = 'react'>
+                    <Route
+                        element = { <NewsReact /> }
+                        path = 'news'
+                    />
+                    <Route
+                        element = { <AccordionReact /> }
+                        path = 'accordion'
+                    />
 
-                    {/* <Route index element={<LeagueStandings />} /> */}
                 </Route>
             </Route>
         </Routes>
     );
 };
+//<Route path=":teamId" element={<Team />} />
+//<Route index element={<LeagueStandings />} />
+
+
+// const routes = useRoutes([
+//     {
+//         path:     '',
+//         element:  <Main />,
+//         children: [
+//             {
+//                 path:     'js',
+//                 element:  <JavaScript />,
+//                 children: [{ path: '', element: <Jscontainer /> }],
+//             },
+//             {
+//                 path:     'react',
+//                 element:  <ReactPage />,
+//                 children: [
+//                     { path: 'news', element: <NewsReact /> },
+//                     { path: 'accordion', element: <AccordionReact /> },
+//                 ],
+//             },
+//             // { path: '*', element: <Navigate to = 'register' /> },
+//         ],
+//     },
+// ]);
+
+// return routes;

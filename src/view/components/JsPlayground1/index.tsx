@@ -18,7 +18,6 @@ import Playground from 'javascript-playgrounds';
 import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
 
 
-
 const parameters = {
     code: `const array = [ 2, 5, 9, 15, 0, 4 ];
 
@@ -45,22 +44,22 @@ const player: PublicPaneOptions = {
     type:     'player',
     platform: 'web',
     id:       'player',
-    
+
     console: {
-        visible: true,
-        collapsible: false,
-        maximized: true,
+        visible:             true,
+        collapsible:         false,
+        maximized:           true,
         renderReactElements: false,
-        showFileName: true,
-        showLineNumber: true
-    }
+        showFileName:        true,
+        showLineNumber:      true,
+    },
 
 };
 
 
 const playgroundStyles: React.CSSProperties = {
-    width: 800, height: 500
-}
+    width: 800, height: 500,
+};
 
 const styles = `
     .CodeMirror-scroll {
@@ -72,7 +71,7 @@ const styles = `
     .CodeMirror-gutter {
         background-color: #eeeeee;
     }
-`
+`;
 // #e0f2f1
 // #b2dfdb more
 // #eceff1
@@ -81,17 +80,17 @@ const styles = `
 // CodeMirror-lines  .CodeMirror-linenumber  .CodeMirror-gutter-elt
 
 
-export const JsCmp: FC<PropTypes> = () => {
+export const JsPlayground1: FC<PropTypes> = () => {
     return (
         <S.Container>
             <div className = 'js-title'>Component: JsCmp For Testing</div>
 
-            <Playground 
+            <Playground
                 className = 'playground'
                 code = { parameters.code }
+                css = { styles }
                 panes = { [ 'editor', player ] }
                 style = { playgroundStyles }
-                css = { styles }
             />
 
         </S.Container>
