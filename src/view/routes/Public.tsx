@@ -1,7 +1,11 @@
 // Core
 import React, { FC } from 'react';
-import { useRoutes, Navigate } from 'react-router-dom';
-import { AccordionReact, NewsReact } from '../containers';
+import { useRoutes,   BrowserRouter,
+    Routes,
+    Route, Navigate } from 'react-router-dom';
+
+// Container
+import { AccordionReact, Jscontainer, NewsReact } from '../containers';
 
 
 // Pages
@@ -17,7 +21,7 @@ export const Public: FC = () => {
                     path: 'js', 
                     element: <JavaScript />,
                     children: [
-                        // {path: ':id', element: }
+                        {path: '', element: <Jscontainer />}
                     ] 
                 },
                 {
@@ -33,5 +37,21 @@ export const Public: FC = () => {
         },
     ]);
 
-    return routes;
+    // return routes;
+    return (
+        <Routes>
+            <Route path="" element={<Main />} >
+                {/* <Route index element={<Home />} /> */}
+                <Route path='js' element={ <JavaScript /> } />
+
+                <Route path="react" element={<ReactPage />}>
+                    {/* <Route path=":teamId" element={<Team />} /> */}
+                    <Route path="news" element={<NewsReact />} />
+                    <Route path="accordion" element={<AccordionReact />} />
+
+                    {/* <Route index element={<LeagueStandings />} /> */}
+                </Route>
+            </Route>
+        </Routes>
+    );
 };

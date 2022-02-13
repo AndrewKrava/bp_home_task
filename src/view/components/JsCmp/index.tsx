@@ -18,6 +18,7 @@ import Playground from 'javascript-playgrounds';
 import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
 
 
+
 const parameters = {
     code: `const array = [ 2, 5, 9, 15, 0, 4 ];
 
@@ -31,36 +32,66 @@ function print(arr) {
 
 print(array);` };
 
-// {console: { visiable: true }
-const console: PublicPaneOptions = {
-    type:                'console',
-    id:                  '1',
-    showFileName:        true,
-    showLineNumber:      true,
-    renderReactElements: true,
-};
+// TODO REMOVE
+// const console: PublicPaneOptions = {
+//     type:                'console',
+//     id:                  '1',
+//     showFileName:        true,
+//     showLineNumber:      true,
+//     renderReactElements: true,
+// };
 
 const player: PublicPaneOptions = {
     type:     'player',
     platform: 'web',
-    id:       '11',
+    id:       'player',
+    
+    console: {
+        visible: true,
+        collapsible: false,
+        maximized: true,
+        renderReactElements: false,
+        showFileName: true,
+        showLineNumber: true
+    }
 
 };
 
-// const editor: PublicPaneOptions = {
-//     type: 'editor',
-// };
+
+const playgroundStyles: React.CSSProperties = {
+    width: 800, height: 500
+}
+
+const styles = `
+    .CodeMirror-scroll {
+        background-color: #eeeeee;
+    }
+    .cm-s-react .CodeMirror-linenumber {
+        color: black;
+    }
+    .CodeMirror-gutter {
+        background-color: #eeeeee;
+    }
+`
+// #e0f2f1
+// #b2dfdb more
+// #eceff1
+
+// .CodeMirror-gutter
+// CodeMirror-lines  .CodeMirror-linenumber  .CodeMirror-gutter-elt
+
 
 export const JsCmp: FC<PropTypes> = () => {
     return (
         <S.Container>
-            <div className = 'js-title'>Component: JsCmp</div>
+            <div className = 'js-title'>Component: JsCmp For Testing</div>
 
-            <Playground
+            <Playground 
+                className = 'playground'
                 code = { parameters.code }
-                panes = { [ player, console, 'editor' ] }
-
-                style = {{ width: 800, height: 500 }}
+                panes = { [ 'editor', player ] }
+                style = { playgroundStyles }
+                css = { styles }
             />
 
         </S.Container>

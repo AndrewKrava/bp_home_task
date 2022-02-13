@@ -13,7 +13,7 @@ export const Container = styled.section`
 
         &.selected {
             .accordion-question {
-                cursor: initial;
+                
                 color: #4886FF;
 
                 &:after {
@@ -54,3 +54,5 @@ export const Container = styled.section`
         display: none;
     }
 `;
+// remove from         &.selected { .accordion-question {
+// cursor: initial;
