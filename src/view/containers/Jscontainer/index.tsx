@@ -7,73 +7,51 @@ import React, { FC, useState } from 'react';
 // Styles
 import * as S from './styles';
 
+// Components
+import { lessons } from '../../components';
+import { JsPlayground, Select } from '../../elements';
+
 // Types
 type PropTypes = {
 
 }
 
-
-import { lessons } from '../../components';
-import { JsPlayground, Select } from '../../elements';
-
-function getLessons() {
-    return lessons.map((lesson) => {
-        return (
-            <option
-                key = { lesson.title }
-                value = { lesson.title }>{lesson.title}
-            </option>
-        );
-    });
+// move to global types??
+type Task = {
+    taskNumber: number;
+    code: string;
+    taskDescription: string;
 }
 
+
 export const Jscontainer: FC<PropTypes> = () => {
-    const [ lessonTitle, setLessonTitle ] = useState<string | null>(null);
-    const [ tasksState, setTasksState ] = useState<{code: string, taskDescription: string }[] | null>(null);
-    const [ taskNumber, setTaskNumber ] = useState<number | null>(null);
-
-    function getTasks() {
-        if (!tasksState) {
-            return null;
-        }
-
-        return (
-            <div>
-                <label htmlFor = 'tasks'>Choose a task:</label>
-                <select
-                    id = 'tasks'
-                    onChange = { (event) => setTaskNumber(Number(event.target.value) - 1) }>
-                    <option
-                        disabled
-                        selected
-                        value = ''>Select your option
-                    </option>
-                    {
-                        tasksState.map((_, index) => {
-                            return (
-                                <option
-                                    key = { index + 1 }
-                                    value = { index + 1 }>{index + 1}
-                                </option>
-                            );
-                        })
-                    }
-
-                </select>
-            </div>
-        );
-    }
+    // const [ lessonTitle, setLessonTitle ] = useState<string | null>(null);   // remove??
+    // eslint-disable-next-line max-len
+    const [ taskList, setTaskList ] = useState<Task[] | null>(null);
+    // const [ taskNumber, setTaskNumber ] = useState<number | null>(null);     //remove
+    const [ task, setTask ] = useState<Task | null>(null);
 
     function lessonChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         const lesson = lessons.find((lesson) => lesson.title === event.target.value);
 
         if (lesson) {
-            setTasksState(lesson.tasks);
-            setTaskNumber(null);
-            if (lesson) {
-                setLessonTitle(lesson.title);
+            setTask(null);
+            setTaskList(lesson?.tasks);
+        }
+    }
+
+    function taskChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+        if (taskList) {
+            const task = taskList?.find((task) => task.taskNumber === Number(event.target.value));
+            if (task) {
+                setTask(task);
             }
         }
+    }
+
+    function setDeafaultValue(val: string | number): string | number {
+        // eslint-disable-next-line no-extra-boolean-cast
+        return !!val ? val : 'Select your option !!!';
     }
 
 
@@ -81,45 +59,31 @@ export const Jscontainer: FC<PropTypes> = () => {
         <S.Container>
             Container: Jscontainer
 
-            {/* <Select
+            <Select
                 cb = { lessonChangeHandler }
+                defaultSelected = { !taskList }
                 selectIdName = 'choose-lesson'
                 selectOptions = { lessons.map((lesson) => lesson.title) }
                 selectTitle = 'Choose a lesson:'
-            /> */}
-
-
-            <label htmlFor = 'lessons'>Choose a lesson:</label>
-            <select
-                id = 'lessons'
-                onChange = { (event) => lessonChangeHandler(event)
-                }>
-                <option
-                    disabled
-                    selected
-                    value = ''>Select your option
-                </option>
-                {
-                    getLessons()
-                }
-
-            </select>
+            />
 
             {
-                lessonTitle ? getTasks() : null
+                taskList
+                    ? (
+                        <Select
+                            cb = { taskChangeHandler }
+                            defaultSelected = { !task }
+                            selectIdName = 'choose-task'
+                            selectOptions = { taskList.map((task) => task.taskNumber) }
+                            selectTitle = 'Choose a task:'
+                        />
+                    )
+                    : null
             }
 
             {
-                tasksState
-                    ? (
-                        <div>
-                            {
-                                taskNumber !== null
-                                    ? <JsPlayground task = { tasksState[ taskNumber ] } /> : null
-                            }
-                        </div>
-                    )
-
+                task
+                    ? <JsPlayground task = { task } />
                     : null
             }
 

@@ -13,6 +13,8 @@ type PropTypes = {
     cb: Function;
     selectIdName: string;
     selectTitle: string;
+    default?: string | number;
+    defaultSelected?: boolean;
 }
 
 
@@ -22,10 +24,11 @@ export const Select: FC<PropTypes> = (props) => {
             <label htmlFor = { props.selectIdName }>{props.selectTitle}</label>
             <select
                 id = { props.selectIdName }
-                onChange = { (event) => props.cb(event.target.value) }>
+                // value = { props.default && '' }
+                onChange = { (event) => props.cb(event) }>
                 <option
                     disabled
-                    selected
+                    selected = { props.defaultSelected }
                     value = ''>Select your option
                 </option>
                 {
