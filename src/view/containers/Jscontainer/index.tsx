@@ -14,7 +14,7 @@ type PropTypes = {
 
 
 import { lessons } from '../../components';
-import { JsPlayground } from '../../elements';
+import { JsPlayground, Select } from '../../elements';
 
 function getLessons() {
     return lessons.map((lesson) => {
@@ -28,9 +28,9 @@ function getLessons() {
 }
 
 export const Jscontainer: FC<PropTypes> = () => {
-    const [ lessonTitle, setLessonTitle ] = useState<string>();
-    const [ tasksState, setTasksState ] = useState<{code: string, taskDescription: string }[]>();
-    const [ taskNumber, setTaskNumber ] = useState<number>();
+    const [ lessonTitle, setLessonTitle ] = useState<string | null>(null);
+    const [ tasksState, setTasksState ] = useState<{code: string, taskDescription: string }[] | null>(null);
+    const [ taskNumber, setTaskNumber ] = useState<number | null>(null);
 
     function getTasks() {
         if (!tasksState) {
@@ -69,7 +69,7 @@ export const Jscontainer: FC<PropTypes> = () => {
 
         if (lesson) {
             setTasksState(lesson.tasks);
-            setTaskNumber(void 0);
+            setTaskNumber(null);
             if (lesson) {
                 setLessonTitle(lesson.title);
             }
@@ -80,6 +80,14 @@ export const Jscontainer: FC<PropTypes> = () => {
     return (
         <S.Container>
             Container: Jscontainer
+
+            {/* <Select
+                cb = { lessonChangeHandler }
+                selectIdName = 'choose-lesson'
+                selectOptions = { lessons.map((lesson) => lesson.title) }
+                selectTitle = 'Choose a lesson:'
+            /> */}
+
 
             <label htmlFor = 'lessons'>Choose a lesson:</label>
             <select
@@ -105,16 +113,10 @@ export const Jscontainer: FC<PropTypes> = () => {
                 tasksState
                     ? (
                         <div>
-                            <div className = 'task-description'>
-                                { taskNumber !== void 0 ?  tasksState[ taskNumber ].taskDescription : null}
-                            </div>
-
-                            <div>
-                                {
-                                    taskNumber !== void 0
-                                        ?  <JsPlayground code = { tasksState[ taskNumber ].code }/> : null
-                                }
-                            </div>
+                            {
+                                taskNumber !== null
+                                    ? <JsPlayground task = { tasksState[ taskNumber ] } /> : null
+                            }
                         </div>
                     )
 

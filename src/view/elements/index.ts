@@ -5,3 +5,4 @@ export * from './CommentsCounterReact';
 export * from './CounterForPostReact';
 export * from './LikesCounterReact';
 export * from './JsPlayground';
+export * from './Select';

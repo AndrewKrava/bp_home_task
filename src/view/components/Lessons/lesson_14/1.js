@@ -60,6 +60,8 @@ setTimeout(() => {
 
 // exports.CleanerRobot = CleanerRobot;
 
+export const taskNumber = 1;
+
 export const taskDescription = `Задача 1.
 
 Дан базовый класс робота-уборщика.

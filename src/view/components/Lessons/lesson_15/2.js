@@ -40,6 +40,9 @@ console.log(developer2.completedTasks.length); // 3
 
 // exports.Developer = Developer;
 
+export const taskNumber = 2;
+
+
 export const taskDescription = `Задача 2.
  
 Дан класс Developer.

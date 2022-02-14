@@ -47,6 +47,9 @@ function sum(a, b) {
 sum.delay(1000)(5, 2); /* Выведет 7 через 1 секунду. */
 
 
+export const taskNumber = 1;
+
+
 export const taskDescription = `Задача 1.
 
 Добавьте всем функциям в прототип метод delay(ms).

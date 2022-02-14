@@ -1,12 +1,14 @@
 // Core
-import React, { EventHandler, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 
-
-// Types
-type PropTypes = {
+type Task = {
     code?: string;
     taskDescription?: string;
+}
+// Types
+type PropTypes = {
+    task: Task;
 }
 
 import Playground from 'javascript-playgrounds';
@@ -48,6 +50,9 @@ const Container = styled.div`
         display: flex;
         margin: auto;
     }
+    div {
+        margin: 10px;
+    }
 `;
 
 
@@ -65,6 +70,10 @@ export const JsPlayground: FC<PropTypes> = (props) => {
         <Container>
             <div className = 'js-title'>El: JsPlayground For Testing</div>
 
+            <div className = 'task-description'>
+                <pre>{props.task.taskDescription}</pre>
+            </div>
+
             <div>
                 <label htmlFor = 'input-playground-width'>Width ⚙️</label>
                 <input
@@ -77,7 +86,7 @@ export const JsPlayground: FC<PropTypes> = (props) => {
 
             <Playground
                 className = 'playground'
-                code = { props.code }
+                code = { props.task.code }
                 css = { styles }
                 panes = { [ 'editor', player ] }
                 style = {{ width: playgroundWidth + '%', height: 800 }}

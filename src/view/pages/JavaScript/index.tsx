@@ -23,11 +23,9 @@ type PropTypes = {
 const JavaScript: FC<PropTypes> = () => {
     return (
         <S.Container>
-            Page: JavaScript
-            <p>chose leson</p>
 
-            <div className = 'page-title'>Page: ReactPage
-                <Link to = '/js/js-lessons-container'>Lessons</Link>
+            <div className = 'page-title'>
+                Page: JavaScript <Link to = '/js/js-lessons-container'>Lessons</Link>
             </div>
 
             <Outlet />

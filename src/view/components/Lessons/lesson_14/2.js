@@ -71,6 +71,9 @@ try {
 
 // exports.CleanerRobot = CleanerRobot;
 
+export const taskNumber = 2;
+
+
 export const taskDescription = `Задача 2.
 
 Добавьте роботу геттер и сеттер для приватного свойства energy.
