@@ -25,10 +25,8 @@ type Task = {
 
 
 export const Jscontainer: FC<PropTypes> = () => {
-    // const [ lessonTitle, setLessonTitle ] = useState<string | null>(null);   // remove??
     // eslint-disable-next-line max-len
     const [ taskList, setTaskList ] = useState<Task[] | null>(null);
-    // const [ taskNumber, setTaskNumber ] = useState<number | null>(null);     //remove
     const [ task, setTask ] = useState<Task | null>(null);
 
     function lessonChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -49,19 +47,13 @@ export const Jscontainer: FC<PropTypes> = () => {
         }
     }
 
-    function setDeafaultValue(val: string | number): string | number {
-        // eslint-disable-next-line no-extra-boolean-cast
-        return !!val ? val : 'Select your option !!!';
-    }
-
-
     return (
         <S.Container>
             Container: Jscontainer
 
             <Select
                 cb = { lessonChangeHandler }
-                defaultSelected = { !taskList }
+                defaultSelected = { !!taskList }
                 selectIdName = 'choose-lesson'
                 selectOptions = { lessons.map((lesson) => lesson.title) }
                 selectTitle = 'Choose a lesson:'
@@ -72,7 +64,7 @@ export const Jscontainer: FC<PropTypes> = () => {
                     ? (
                         <Select
                             cb = { taskChangeHandler }
-                            defaultSelected = { !task }
+                            defaultSelected = { !!task }
                             selectIdName = 'choose-task'
                             selectOptions = { taskList.map((task) => task.taskNumber) }
                             selectTitle = 'Choose a task:'
