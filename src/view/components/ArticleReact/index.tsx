@@ -1,6 +1,5 @@
 // Core
 import React, { FC } from 'react';
-import { CounterForPostReact } from '../../elements';
 
 // Bus
 // import {} from '../../../bus/'

@@ -32,9 +32,14 @@ function getDivisors(num) {
 
 /* не удалять */
 
-console.log(getDivisors(12)); // [1, 2, 3, 4, 6, 12]
-getDivisors('Content'); // Error: parameter type is not a Number
-getDivisors(0); // Error: parameter can't be a 0
+try {
+    console.log(getDivisors(12)); // [1, 2, 3, 4, 6, 12]
+    getDivisors('Content'); // Error: parameter type is not a Number
+    getDivisors(0); // Error: parameter can't be a 0
+} catch (error) {
+    console.log(error.message);
+}
+
 
 // exports.getDivisors = getDivisors;
 /* не удалять */
@@ -73,8 +78,12 @@ export const code = `function getDivisors(num) {
 
 /* не удалять */
 
-console.log(getDivisors(12)); // [1, 2, 3, 4, 6, 12]
-getDivisors('Content'); // Error: parameter type is not a Number
-getDivisors(0); // Error: parameter can't be a 0
+try {
+    console.log(getDivisors(12)); // [1, 2, 3, 4, 6, 12]
+    getDivisors('Content'); // Error: parameter type is not a Number
+    getDivisors(0); // Error: parameter can't be a 0
+} catch (error) {
+    console.log(error.message);
+}
 
 `;

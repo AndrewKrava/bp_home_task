@@ -28,7 +28,7 @@ try {
 
 export const taskNumber = 1;
 
-export const task = `
+export const taskDescription = `
 Задача 1.
 
 Создайте функцию "f", которая возвращает куб числа.

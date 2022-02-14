@@ -56,7 +56,10 @@ export const taskDescription = `Задача 5.
 
 `;
 
-export const code = `function isPositive(num) {
+export const code = `const array = [ 1, 2, -4, 3, -9, -1, 7 ];
+
+// Решение
+function isPositive(num) {
     if (typeof num !== 'number') {
         throw new Error('Parameter type is not a Number!');
     }

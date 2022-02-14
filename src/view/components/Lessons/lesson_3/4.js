@@ -40,11 +40,15 @@ function f(day) {
     }
 }
 
+try {
+    f(1); // Воскресенье
+    f(2); // Понедельник
+    f(8); // Error: parameter should be in the range of 1 to 7
+    f('1'); // Error: parameter type is not a Number
+} catch (error) {
+    console.log(error.message);
+}
 
-f(1); // Воскресенье
-f(2); // Понедельник
-f(8); // Error: parameter should be in the range of 1 to 7
-f('1'); // Error: parameter type is not a Number
 
 // exports.f = f;
 /* не удалять */
@@ -91,9 +95,13 @@ export const code = `function f(day) {
 }
 
 
-f(1); // Воскресенье
-f(2); // Понедельник
-f(8); // Error: parameter should be in the range of 1 to 7
-f('1'); // Error: parameter type is not a Number
+try {
+    f(1); // Воскресенье
+    f(2); // Понедельник
+    f(8); // Error: parameter should be in the range of 1 to 7
+    f('1'); // Error: parameter type is not a Number
+} catch (error) {
+    console.log(error.message);
+}
 
 `;

@@ -1,5 +1,7 @@
 // Core
 import React, { FC, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import styled from 'styled-components';
 
 type Task = {
@@ -14,6 +16,7 @@ type PropTypes = {
 import Playground from 'javascript-playgrounds';
 
 import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
+// import { ExternalModule } from 'webpack';
 
 
 const player: PublicPaneOptions = {
@@ -55,9 +58,11 @@ const Container = styled.div`
     }
 `;
 
+const modules = [{ name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' }];
 
 export const JsPlayground: FC<PropTypes> = (props) => {
     const [ playgroundWidth, setPlagroundWidth ] = useState(60);
+    const key = uuidv4();
 
     function changePlaygroundWidth(event: React.ChangeEvent<HTMLInputElement>): void {
         const value = Number(event.target.value);
@@ -88,6 +93,8 @@ export const JsPlayground: FC<PropTypes> = (props) => {
                 className = 'playground'
                 code = { props.task.code }
                 css = { styles }
+                key = { key }
+                modules = { modules }
                 panes = { [ 'editor', player ] }
                 style = {{ width: playgroundWidth + '%', height: 800 }}
             />
