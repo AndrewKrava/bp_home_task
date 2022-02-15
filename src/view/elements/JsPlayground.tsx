@@ -58,7 +58,10 @@ const Container = styled.div`
     }
 `;
 
-const modules = [{ name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' }];
+const modules = [
+    { name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' },
+    { name: 'fetch', url: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/1.1.0/fetch.min.js' },
+];
 
 export const JsPlayground: FC<PropTypes> = (props) => {
     const [ playgroundWidth, setPlagroundWidth ] = useState(60);
