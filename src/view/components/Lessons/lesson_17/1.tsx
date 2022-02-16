@@ -16,23 +16,31 @@
  */
 
 // Решение
-function postpone(start, end, delay) {
-    if (typeof start !== 'number' || typeof end !== 'number' || typeof delay !== 'number') {
-        throw new Error('Arguments should be type of Number.');
-    }
+function postpone(start: number, end: number, delay: number) {
+    const arr = [];
     if (start < end) {
         for (let i = start; i <= end; i++) {
-            setTimeout(() => {
-                console.log(i);
-            }, delay);
+            arr.push(i);
         }
     } else {
         for (let i = start; i >= end; i--) {
-            setTimeout(() => {
-                console.log(i);
-            }, delay);
+            arr.push(i);
         }
     }
+
+    function recursion(arr: number[]) {
+        if (arr.length === 0) {
+            return;
+        }
+        setTimeout(() => {
+            console.log(arr.shift());
+            if (arr.length !== 0) {
+                recursion(arr);
+            }
+        }, delay);
+    }
+
+    recursion(arr);
 }
 
 postpone(1, 3, 1000);
@@ -71,19 +79,30 @@ function postpone(start, end, delay) {
     if (typeof start !== 'number' || typeof end !== 'number' || typeof delay !== 'number') {
         throw new Error('Arguments should be type of Number.');
     }
+    const arr = [];
     if (start < end) {
         for (let i = start; i <= end; i++) {
-            setTimeout( () => {
-                console.log(i);
-            }, delay);            
+            arr.push(i);
         }
     } else {
         for (let i = start; i >= end; i--) {
-            setTimeout( () => {
-                console.log(i);
-            }, delay); 
+            arr.push(i);
         }
     }
+
+    function recursion(arr) {
+        if (arr.length === 0) {
+            return;
+        }
+        setTimeout(() => {
+            console.log(arr.shift());
+            if (arr.length !== 0) {
+                recursion(arr);
+            }
+        }, delay);
+    }
+
+    recursion(arr);
 }
 
 postpone(1, 3, 1000);

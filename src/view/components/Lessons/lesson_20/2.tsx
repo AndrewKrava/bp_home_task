@@ -12,22 +12,20 @@
 ```javascript
 */
 
+interface ICustomer {
+    name: string
+    verified?: boolean
+}
+
 class Customers {
-    #listObjects = [];
+    private listObjects: ICustomer[] = [];
 
-    add(obj) {
-        if (Object.prototype.toString.call(obj) !== '[object Object]') {
-            throw new Error('Argument should be an Object.');
-        }
-        if (!obj.name) {
-            throw new Error('Argument should have Name field.');
-        }
-
-        this.#listObjects.push(obj);
+    add(obj: ICustomer) {
+        this.listObjects.push(obj);
     }
 
-    [Symbol.iterator] = function*() {
-        const sortedList = this.#listObjects.filter((el) => el.verified);
+    *[ Symbol.iterator ] () {
+        const sortedList = this.listObjects.filter((el) => el.verified);
         for (const el of sortedList) {
             yield el;
         }

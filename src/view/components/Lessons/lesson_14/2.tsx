@@ -13,60 +13,95 @@
     - при создании экземпляра CleanerRobot изначальный уровень энергии зада в не рамок допустимого диапазона.
  */
 
-function CleanerRobot(initialEnergy = 0 /* Изначальный заряд батареи */) {
-    this.getEnergy = getEnergy;
-    this.setEnergy = setEnergy;
+// function CleanerRobot(initialEnergy = 0 /* Изначальный заряд батареи */) {
+//     this.getEnergy = getEnergy;
+//     this.setEnergy = setEnergy;
 
-    const MAX_ENERGY_CAPACITY = 100; /* Максимальная ёмкость батареи. */
-    let energy = null;
+//     const MAX_ENERGY_CAPACITY = 100; /* Максимальная ёмкость батареи. */
+//     let energy = null;
 
-    this.setEnergy(initialEnergy);
+//     this.setEnergy(initialEnergy);
 
-    function getEnergy() {
-        // Решение
-        return energy;
+//     function getEnergy() {
+//         // Решение
+//         return energy;
+//     }
+//     function setEnergy(value) {
+//         // Решение
+//         if (value < 0) {
+//             throw new Error('Energy level can\'t be less then 0.');
+//         }
+//         if (value > MAX_ENERGY_CAPACITY) {
+//             throw new Error(`Energy level can\'t be more then ${MAX_ENERGY_CAPACITY}.`);
+//         }
+//         energy = value;
+//     }
+// }
+
+class CleanerRobot {
+    initialEnergy;
+
+    private readonly MAX_ENERGY_CAPACITY = 100; /* Максимальная ёмкость батареи. */
+    private energy: number = 0;
+
+    constructor(initialEnergy: number) {
+        this.initialEnergy = initialEnergy;
+        this.robotEnergy = initialEnergy;
     }
-    function setEnergy(value) {
+
+    get robotEnergy() {
+        // Решение
+        return this.energy;
+    }
+
+    set robotEnergy(value: number) {
         // Решение
         if (value < 0) {
             throw new Error('Energy level can\'t be less then 0.');
         }
-        if (value > MAX_ENERGY_CAPACITY) {
-            throw new Error(`Energy level can\'t be more then ${MAX_ENERGY_CAPACITY}.`);
+        if (value > this.MAX_ENERGY_CAPACITY) {
+            throw new Error(`Energy level can\'t be more then ${this.MAX_ENERGY_CAPACITY}.`);
         }
-        energy = value;
+        this.energy = value;
     }
 }
 
 const cleanerRobot = new CleanerRobot(22);
 
 /* Текущий заряд батареи: 22 */
-console.log(`Текущий заряд батареи: ${cleanerRobot.getEnergy()}`);
+console.log(`Текущий заряд батареи: ${cleanerRobot.robotEnergy}`);
 
-cleanerRobot.setEnergy(55);
+cleanerRobot.robotEnergy = 55;
 
 /* Текущий заряд батареи: 55 */
-console.log(`Текущий заряд батареи: ${cleanerRobot.getEnergy()}`);
+console.log(`Текущий заряд батареи: ${cleanerRobot.robotEnergy}`);
 
 try {
+    // eslint-disable-next-line no-new
     new CleanerRobot(-1);
 } catch (error) {
     /* Error: New energy level can not be less than 0. */
-    console.log(`${error.name}: ${error.message}`);
+    if (error instanceof Error) {
+        console.log(`${error.name}: ${error.message}`);
+    }
 }
 
 try {
-    cleanerRobot.setEnergy(-22);
+    cleanerRobot.robotEnergy = -22;
 } catch (error) {
     /* Error: New energy level can not be less than 0. */
-    console.log(`${error.name}: ${error.message}`);
+    if (error instanceof Error) {
+        console.log(`${error.name}: ${error.message}`);
+    }
 }
 
 try {
-    cleanerRobot.setEnergy(101);
+    cleanerRobot.robotEnergy = 101;
 } catch (error) {
     /* Error: New energy level can not be more than 100. */
-    console.log(`${error.name}: ${error.message}`);
+    if (error instanceof Error) {
+        console.log(`${error.name}: ${error.message}`);
+    }
 }
 
 // exports.CleanerRobot = CleanerRobot;

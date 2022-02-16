@@ -1,51 +1,49 @@
 /**
-Задача 3.
+Задача 2.
 
 Улучшите класс Worker из предыдущей задачи.
-Для свойства rate и days добавьте методы для установки значений.
+Сделайте все свойства приватными, а для чтения каждого из них создайте соответствующие методы:
+
+    - getName — возвращает конкатенацию приватных свойств firstName и lastName;
+    - getRate — возвращает значение приватного свойства rate
+    - getDays — возвращает значение приватного свойства days
+    - getSalary — возвращает зарплату
 
 Условия:
     - Реализация решения — это синтаксис современных классов JavaScript;
     - Приватные свойства необходимо объявить с помощью официального синтаксиса (#имяСвойства).
  */
 
+
 // Решение
 
 class Worker {
-    #firstName;
-    #lastName;
-    #rate;
-    #days;
+    private firstName;
+    private lastName;
+    private rate;
+    private days;
 
-    constructor(firstName, lastName, rate, days) {
-        this.#firstName = firstName;
-        this.#lastName = lastName;
-        this.#rate = rate;
-        this.#days = days;
+    constructor(firstName: string, lastName: string, rate: number, days: number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.rate = rate;
+        this.days = days;
     }
 
     getName() {
-        return this.#firstName + ' ' + this.#lastName;
+        return this.firstName + ' ' + this.lastName;
     }
 
     getRate() {
-        return this.#rate;
-    }
-
-    setRate(rate) {
-        this.#rate = rate;
+        return this.rate;
     }
 
     getDays() {
-        return this.#days;
-    }
-
-    setDays(days) {
-        this.#days = days;
+        return this.days;
     }
 
     getSalary() {
-        return this.#rate * this.#days;
+        return this.rate * this.days;
     }
 }
 
@@ -56,19 +54,20 @@ console.log(worker.getRate()); // 10
 console.log(worker.getDays()); // 31
 console.log(worker.getSalary()); // 10 * 31 = 310
 
-worker.setRate(20);
-worker.setDays(10);
-console.log(worker.getSalary()); // 20 * 10 = 200
-
 // exports.Worker = Worker;
 
 
-export const taskNumber = 3;
+export const taskNumber = 2;
 
-export const taskDescription = `Задача 3.
+export const taskDescription = `Задача 2.
  
 Улучшите класс Worker из предыдущей задачи.
-Для свойства rate и days добавьте методы для установки значений.
+Сделайте все свойства приватными, а для чтения каждого из них создайте соответствующие методы:
+ 
+    - getName — возвращает конкатенацию приватных свойств firstName и lastName;
+    - getRate — возвращает значение приватного свойства rate
+    - getDays — возвращает значение приватного свойства days
+    - getSalary — возвращает зарплату
  
 Условия:
     - Реализация решения — это синтаксис современных классов JavaScript;
@@ -98,17 +97,9 @@ class Worker {
     getRate() {
         return this.#rate;
     }
-
-    setRate(rate) {
-        this.#rate = rate;
-    }
     
     getDays() {
         return this.#days;
-    }
-
-    setDays(days) {
-        this.#days = days;
     }
 
     getSalary() {
@@ -122,9 +113,5 @@ console.log(worker.getName()); // Walter White
 console.log(worker.getRate()); // 10
 console.log(worker.getDays()); // 31
 console.log(worker.getSalary()); // 10 * 31 = 310
-
-worker.setRate(20);
-worker.setDays(10);
-console.log(worker.getSalary()); // 20 * 10 = 200
 
 `;

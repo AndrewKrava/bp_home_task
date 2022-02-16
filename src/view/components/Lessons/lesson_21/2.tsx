@@ -18,13 +18,24 @@
 ```javascript
 */
 
-function getCustomers(customers, countries) {
+interface ICustomer {
+    id: string
+    name: string
+    verified?: boolean
+}
+interface ICountries {
+    id: string
+    country: string
+}
+
+
+function getCustomers(customers: ICustomer[], countries: ICountries[]) {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < customers.length; i++) {
             if (customers[ i ].verified) {
                 const objToMerge = countries.filter((el) => el.id === customers[ i ].id);
                 if (objToMerge.length === 0) {
-                    reject(`We don't have information about country for this customer: ${customers[ i ].name}`);
+                    reject(new Error(`We don't have information about country for this customer: ${customers[ i ].name}`));
                 }
                 customers[ i ] = { ...customers[ i ], ...objToMerge[ 0 ] };
             }
@@ -58,7 +69,11 @@ const countries = [
 
 getCustomers(customers, countries)
     .then((customers) => console.log(customers))
-    .catch((error) => console.log(error));
+    .catch((error) => {
+        if (error instanceof Error) {
+            console.log('Error: ', error.message);
+        }
+    });
 
 
 export const taskNumber = 2;

@@ -18,13 +18,16 @@
 ```javascript
 */
 
+interface ICustomer {
+    [key: string]: any
+}
 
-function isCustomerVerified(customer) {
+function isCustomerVerified(customer: ICustomer) {
     return new Promise((resolve, reject) => {
         if (customer.verified) {
             resolve(true);
         } else {
-            reject('Customer is not verified');
+            reject(new Error('Customer is not verified'));
         }
     });
 }
@@ -40,11 +43,19 @@ const personSecond = {
 
 isCustomerVerified(personFirst)
     .then((status) => console.log(status)) // true
-    .catch((error) => console.log(error));
+    .catch((error) => {
+        if (error instanceof Error) {
+            console.log('Error: ', error.message);
+        }
+    });
 
 isCustomerVerified(personSecond)
     .then((status) => console.log(status))
-    .catch((error) => console.log(error)); // Customer is not verified
+    .catch((error) => {
+        if (error instanceof Error) {
+            console.log('Error: ', error.message);
+        }
+    }); // Customer is not verified
 
 
 export const taskNumber = 1;

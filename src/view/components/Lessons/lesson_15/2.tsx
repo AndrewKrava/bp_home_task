@@ -19,14 +19,19 @@
     - Решить задачу в стиле прототипного наследования JavaScript.
  */
 
-function Developer() {
-    this.completedTasks = [];
+interface IDeveloper {
+    completedTasks: string[];
+    completeTask: Function;
 }
 
-// Developer.prototype.completedTasks = [];
-Developer.prototype.completeTask = function(task) {
-    this.completedTasks.push(task);
-};
+class Developer implements IDeveloper {
+    completedTasks: string[] = [];
+
+    completeTask(task: string) {
+        this.completedTasks.push(task);
+    }
+}
+
 
 const developer1 = new Developer();
 const developer2 = new Developer();
@@ -35,8 +40,8 @@ developer1.completeTask('finish a feature');
 developer1.completeTask('refactor code');
 developer2.completeTask('fix bug');
 
-console.log(developer1.completedTasks.length); // 3
-console.log(developer2.completedTasks.length); // 3
+console.log(developer1.completedTasks.length); // 2
+console.log(developer2.completedTasks.length); // 1
 
 // exports.Developer = Developer;
 
@@ -80,7 +85,7 @@ developer1.completeTask('finish a feature');
 developer1.completeTask('refactor code');
 developer2.completeTask('fix bug');
 
-console.log(developer1.completedTasks.length); // 3
-console.log(developer2.completedTasks.length); // 3
+console.log(developer1.completedTasks.length); // 2
+console.log(developer2.completedTasks.length); // 1
 
 `;

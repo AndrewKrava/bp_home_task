@@ -23,7 +23,9 @@
 // Решение
 
 class User {
-    constructor(firstName, lastName) {
+    firstName;
+    lastName;
+    constructor(firstName: string, lastName: string) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -34,7 +36,8 @@ class User {
 }
 
 class Student extends User {
-    constructor(firstName, lastName, year) {
+    year;
+    constructor(firstName: string, lastName: string, year: number) {
         super(firstName, lastName);
         this.year = year;
     }

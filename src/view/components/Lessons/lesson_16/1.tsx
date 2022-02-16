@@ -18,7 +18,11 @@
 // Решение
 
 class Worker {
-    constructor(firstName, lastName, rate, days) {
+    firstName;
+    lastName;
+    rate;
+    days;
+    constructor(firstName: string, lastName: string, rate: number, days: number) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.rate = rate;

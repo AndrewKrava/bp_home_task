@@ -16,7 +16,6 @@ type PropTypes = {
 import Playground from 'javascript-playgrounds';
 
 import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
-// import { ExternalModule } from 'webpack';
 
 
 const player: PublicPaneOptions = {
@@ -60,7 +59,11 @@ const Container = styled.div`
 
 const modules = [
     { name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' },
-    { name: 'fetch', url: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/1.1.0/fetch.min.js' },
+    // { name: 'fetch', globalName: 'fetch', url: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js' },
+    // { name: 'ky', globalName: 'ky', url: 'https://cdnjs.cloudflare.com/ajax/libs/ky/0.27.0/index.min.js' },
+    { name: 'fetch', globalName: 'fetch', url: '' },
+
+
 ];
 
 export const JsPlayground: FC<PropTypes> = (props) => {

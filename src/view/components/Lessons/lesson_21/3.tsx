@@ -17,44 +17,39 @@
 ```javascript
 */
 
-// const get = require('fetch').fetchUrl;
+// const fetch = require('fetch');
 
-function send(url) {
-    // var options = {
-    //     method:      'GET',
-    //     contentType: 'application/json',
-    // };
+function send(url: string) {
+    var options = {
+        method:      'GET',
+        contentType: 'application/json',
+    };
 
-    // return new Promise((resolve, reject) => {
-    //     get(url, options, (error, meta, body) => {
-    //         if (meta.status === 200) {
-    //             const { data } = JSON.parse(body);
-    //             console.log(data);
-    //             resolve(data);
-    //         } else {
-    //             reject(`We have error, status code: ${meta.status}`);
-    //         }
-    //     });
-    // });
+    return new Promise((resolve, reject) => {
+        fetch(url, options, (error, meta, body) => {
+            if (meta.status === 200) {
+                const { data } = JSON.parse(body);
+                console.log(data);
+                resolve(data);
+            } else {
+                reject(`We have error, status code: ${meta.status}`);
+            }
+        });
+    });
 }
-
-
-// const url = 'https://lab.lectrum.io/geo/api/countries?size=2';
 
 
 //После рефакторинга
 
+const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
 
-// const get = require('fetch').fetchUrl;
-const url = 'https://lab.lectrum.io/geo/api/countries?size=2';
-
-// send(url)
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
+send(url)
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
 export const taskNumber = 3;
 
@@ -76,7 +71,12 @@ export const taskDescription = `Задача 3
 `;
 
 
-export const code = `const get = require('fetch');
+export const code = `
+// const ky = require('ky');
+// console.log('>>>>>>', ky);
+
+const fetch = require('fetch');
+console.log('>>>>>>', fetch);
 
 function send(url) {
     var options = {
@@ -84,8 +84,7 @@ function send(url) {
         'contentType': 'application/json'
       };
     return new Promise( (resolve, reject) => {
-        get(url, options, (error, meta, body) => {
-
+        fetch(url, options, (error, meta, body) => {
             if (meta.status === 200) {
                 const { data } = JSON.parse(body);
                 console.log(data);
@@ -93,22 +92,12 @@ function send(url) {
             } else {
                 reject(\`We have error, status code: \${meta.status}\`);
             }
-
         });
     });
 }
 
 
-// const url = 'https://lab.lectrum.io/geo/api/countries?size=2';
-
-
-
-//После рефакторинга
-
-
-// const get = require('fetch').fetchUrl;
-const url = 'https://lab.lectrum.io/geo/api/countries?size=2';
-
+const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
 send(url)
     .then(data => {
         console.log(data);
@@ -116,5 +105,4 @@ send(url)
     .catch(error => {
         console.log(error);
     });
-
 `;

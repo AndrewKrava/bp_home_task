@@ -20,9 +20,10 @@ func.delay(1000)('value 1', 'value 2').
     - в реализации метода delay(ms) обязательно использовать setTimeout.
  */
 
-Function.prototype.delay = function(ms) {
+// eslint-disable-next-line no-extend-native
+Function.prototype.delay = function<T>(ms: number) {
     if (this.length) {
-        return (...rest) => {
+        return (...rest: T[]) => {
             setTimeout(() => {
                 this(...rest);
             }, ms);
@@ -41,7 +42,7 @@ function sayHello() {
 sayHello.delay(1000); /* Выведет "Hello!" через 1 секунду */
 
 
-function sum(a, b) {
+function sum(a: number, b: number) {
     console.log(a + b);
 }
 sum.delay(1000)(5, 2); /* Выведет 7 через 1 секунду. */

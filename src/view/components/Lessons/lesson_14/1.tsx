@@ -18,36 +18,81 @@ onReady сработать не должен, а также нужно выве�
  */
 
 
-function CleanerRobot(
-    initialEnergy = 0 /* Изначальный заряд батареи робота */,
-    cleaningSquare /* Площадь для уборки в метрах. */,
-) {
-    let energy = initialEnergy;
-    let timerId = 0;
-    const ENERGY_CONSUMPTION = 1; /* Расход энергии: 1% батареи на 1 час работы. */
-    const CLEANING_SPEED = 10; /* Скорость уборки: 10 квадратных метров в час. */
-    const getCleaningTime = () => cleaningSquare / CLEANING_SPEED;
-    const onReady = () => console.log(`Уборка завершена. Осталось заряда батареи: ${energy}.`);
+// const CleanerRobot: CleanerRobotConstructor = function(
+//     this: ICleanerRobot,
+//     initialEnergy: number = 0 /* Изначальный заряд батареи робота */,
+//     cleaningSquare: number /* Площадь для уборки в метрах. */,
+// ) {
+//     let energy = initialEnergy;
+//     let timerId = 0;
+//     const ENERGY_CONSUMPTION = 1; /* Расход энергии: 1% батареи на 1 час работы. */
+//     const CLEANING_SPEED = 10; /* Скорость уборки: 10 квадратных метров в час. */
+//     const getCleaningTime = () => cleaningSquare / CLEANING_SPEED;
+//     const onReady = () => console.log(`Уборка завершена. Осталось заряда батареи: ${energy}.`);
 
-    this.clean = () => {
-        const cleaningTime = getCleaningTime();
+//     this.clean = () => {
+//         const cleaningTime = getCleaningTime();
+
+//         console.log(
+//             `Начинаю процесс уборки. Время уборки: ${cleaningTime} часов.`,
+//         );
+
+//         energy -= cleaningTime * ENERGY_CONSUMPTION;
+
+//         /* Для удобства время уборки сокращено до формата 1 час = 1 секунда */
+//         timerId = setTimeout(onReady, cleaningTime * 1000);
+//     };
+
+//     // Решение
+//     this.stop = () => {
+//         console.log(`Уборка завершена досрочно. Осталось заряда батареи: ${energy}`);
+//         clearTimeout(timerId);
+//     };
+// };
+
+
+// exports.CleanerRobot = CleanerRobot;
+
+class CleanerRobot {
+    initialEnergy;
+    cleaningSquare;
+    private energy: number;
+    private timerId: number | ReturnType<typeof setTimeout> = 0;
+    private readonly ENERGY_CONSUMPTION = 1; /* Расход энергии: 1% батареи на 1 час работы. */
+    private readonly CLEANING_SPEED = 10; /* Скорость уборки: 10 квадратных метров в час. */
+
+    constructor(initialEnergy: number, cleaningSquare: number) {
+        this.initialEnergy = initialEnergy;
+        this.cleaningSquare = cleaningSquare;
+        this.energy = initialEnergy;
+    }
+
+
+    getCleaningTime = () => this.cleaningSquare / this.CLEANING_SPEED;
+    onReady = () => console.log(`Уборка завершена. Осталось заряда батареи: ${this.energy}.`);
+
+    clean() {
+        const cleaningTime = this.getCleaningTime();
 
         console.log(
             `Начинаю процесс уборки. Время уборки: ${cleaningTime} часов.`,
         );
 
-        energy -= cleaningTime * ENERGY_CONSUMPTION;
+        this.energy -= cleaningTime * this.ENERGY_CONSUMPTION;
 
         /* Для удобства время уборки сокращено до формата 1 час = 1 секунда */
-        timerId = setTimeout(onReady, cleaningTime * 1000);
-    };
+        this.timerId = setTimeout(this.onReady, cleaningTime * 1000);
+    }
 
     // Решение
-    this.stop = () => {
-        console.log(`Уборка завершена досрочно. Осталось заряда батареи: ${energy}`);
-        clearTimeout(timerId);
+    stop = () => {
+        console.log(`Уборка завершена досрочно. Осталось заряда батареи: ${this.energy}`);
+        if (typeof this.timerId === 'number') {
+            clearTimeout(this.timerId);
+        }
     };
 }
+
 
 const cleanerRobot = new CleanerRobot(50, 45);
 cleanerRobot.clean(); /* Начинаю процесс уборки. Время уборки: 4.5 часов. */
@@ -57,8 +102,6 @@ cleanerRobot.clean(); /* Начинаю процесс уборки. Время 
 setTimeout(() => {
     cleanerRobot.stop(); /* Спустя 1 секунду: Уборка завершена досрочно. Осталось заряда батареи: 45.5. */
 }, 1000);
-
-// exports.CleanerRobot = CleanerRobot;
 
 export const taskNumber = 1;
 

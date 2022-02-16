@@ -14,19 +14,19 @@
 // Решение
 
 class Stringer {
-    reverse(string) {
+    reverse(string: string) {
         return string.split('').reverse()
             .join('');
     }
 
-    uppercaseFirst(string) {
+    uppercaseFirst(string: string) {
         const arr = string.split('');
         arr[ 0 ] = arr[ 0 ].toUpperCase();
 
         return arr.join('');
     }
 
-    uppercaseAll(string) {
+    uppercaseAll(string: string) {
         const arr = string.split(' ');
         const resultArr = [];
         for (let el of arr) {

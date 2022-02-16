@@ -18,28 +18,27 @@
 ```javascript
 */
 
+interface ICustomer {
+    name: string
+    verified?: boolean
+}
+
 class Customers {
-    #listObjects = [];
+    private listObjects: ICustomer[] = [];
 
-    add(obj) {
-        if (Object.prototype.toString.call(obj) !== '[object Object]') {
-            throw new Error('Argument should be an Object.');
-        }
-        if (!obj.name) {
-            throw new Error('Argument should have Name field.');
-        }
-
-        this.#listObjects.push(obj);
+    add(obj: ICustomer) {
+        this.listObjects.push(obj);
     }
 
     [ Symbol.iterator ]() {
         let i = 0;
-        const sortedList = this.#listObjects.filter((el) => el.verified);
+        const sortedList = this.listObjects.filter((el) => el.verified);
 
         return {
             next: () => {
                 const done = i >= sortedList.length;
-                const value = !done ? sortedList[ i ] : undefined;
+                const value = !done ? sortedList[ i ] : void 0;
+                // eslint-disable-next-line no-plusplus
                 i++;
 
                 return {
