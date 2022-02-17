@@ -16,10 +16,6 @@ type PropTypes = {
     /* type props here */
 }
 
-
-// const
-
-
 const JavaScript: FC<PropTypes> = () => {
     return (
         <S.Container>

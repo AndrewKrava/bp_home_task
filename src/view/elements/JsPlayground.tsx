@@ -37,15 +37,16 @@ const player: PublicPaneOptions = {
 
 const styles = `
     .CodeMirror-scroll {
-        background-color: #eeeeee;
+        background-color:aqua;
     }
     .cm-s-react .CodeMirror-linenumber {
         color: black;
     }
     .CodeMirror-gutter {
-        background-color: #eeeeee;
+        background-color:aqua;
     }
 `;
+// aqua          #eeeeee;
 
 const Container = styled.div`
     .playground {
@@ -57,17 +58,10 @@ const Container = styled.div`
     }
 `;
 
-const modules = [
-    { name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' },
-    // { name: 'fetch', globalName: 'fetch', url: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js' },
-    // { name: 'ky', globalName: 'ky', url: 'https://cdnjs.cloudflare.com/ajax/libs/ky/0.27.0/index.min.js' },
-    { name: 'fetch', globalName: 'fetch', url: '' },
-
-
-];
+const modules = [{ name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' }];
 
 export const JsPlayground: FC<PropTypes> = (props) => {
-    const [ playgroundWidth, setPlagroundWidth ] = useState(60);
+    const [ playgroundWidth, setPlagroundWidth ] = useState(80);
     const key = uuidv4();
 
     function changePlaygroundWidth(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -88,11 +82,11 @@ export const JsPlayground: FC<PropTypes> = (props) => {
             <div>
                 <label htmlFor = 'input-playground-width'>Width ⚙️</label>
                 <input
-                    defaultValue = { 60 }
+                    defaultValue = { 80 }
                     id = 'input-playground-width'
                     type = 'number'
                     onChange = { (value) => changePlaygroundWidth(value) }
-                />
+                />%
             </div>
 
             <Playground
@@ -102,7 +96,7 @@ export const JsPlayground: FC<PropTypes> = (props) => {
                 key = { key }
                 modules = { modules }
                 panes = { [ 'editor', player ] }
-                style = {{ width: playgroundWidth + '%', height: 800 }}
+                style = {{ width: playgroundWidth + '%', height: 700 }}
             />
 
         </Container>

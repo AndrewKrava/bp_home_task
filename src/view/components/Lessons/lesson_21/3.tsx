@@ -17,39 +17,32 @@
 ```javascript
 */
 
-// const fetch = require('fetch');
-
-// function send(url: string) {
-//     var options = {
-//         method:      'GET',
-//         contentType: 'application/json',
-//     };
-
-//     return new Promise((resolve, reject) => {
-//         fetch(url, options, (error, meta, body) => {
-//             if (meta.status === 200) {
-//                 const { data } = JSON.parse(body);
-//                 console.log(data);
-//                 resolve(data);
-//             } else {
-//                 reject(`We have error, status code: ${meta.status}`);
-//             }
-//         });
-//     });
-// }
+function send(url: string) {
+    return new Promise((resolve, reject) => {
+        window.fetch(url)
+            .then((res) => {
+                if (res.ok) {
+                    resolve(res.json());
+                } else {
+                    reject(new Error(`We have error, status code: ${ res.status }`));
+                }
+            })
+            .catch((error) => {
+                reject(new Error(`We have error, ${error}`));
+            });
+    });
+}
 
 
-// //После рефакторинга
+const url = 'https://jsonplaceholder.typicode.com/users';
+send(url)
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
-// const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
-
-// send(url)
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
 
 export const taskNumber = 3;
 
@@ -71,33 +64,24 @@ export const taskDescription = `Задача 3
 `;
 
 
-export const code = `
-// const ky = require('ky');
-// console.log('>>>>>>', ky);
-
-const fetch = require('fetch');
-console.log('>>>>>>', fetch);
-
-function send(url) {
-    var options = {
-        'method' : 'GET',
-        'contentType': 'application/json'
-      };
+export const code = `function send(url) {
     return new Promise( (resolve, reject) => {
-        fetch(url, options, (error, meta, body) => {
-            if (meta.status === 200) {
-                const { data } = JSON.parse(body);
-                console.log(data);
-                resolve(data);
-            } else {
-                reject(\`We have error, status code: \${meta.status}\`);
-            }
-        });
-    });
-}
+        window.fetch(url)
+            .then(res => {
+                if (res.ok) {
+                    resolve(res.json());
+                } else {
+                   reject(\`We have error, status code: \${ res.status }\`);
+                }
+            })
+            .catch((error) => {
+                reject(\`We have error, \${error}\`); 
+            });
+    })        
+}            
 
 
-const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
+const url = 'https://jsonplaceholder.typicode.com/users';
 send(url)
     .then(data => {
         console.log(data);
@@ -105,4 +89,5 @@ send(url)
     .catch(error => {
         console.log(error);
     });
+
 `;

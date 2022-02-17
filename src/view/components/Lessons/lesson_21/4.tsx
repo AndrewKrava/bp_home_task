@@ -21,48 +21,43 @@
 
 ```javascript
 */
-// const get = require('fetch').fetchUrl;
 
-// class Countries {
-//     constructor(endpoint) {
-//         if (typeof endpoint !== 'string') {
-//             throw new Error('Endpoint should be a String.');
-//         }
-//         this.endpoint = endpoint;
-//     }
+class Countries {
+    endpoint;
+    constructor(endpoint: string) {
+        this.endpoint = endpoint;
+    }
 
-//     send(size) {
-//         if (typeof size !== 'number') {
-//             throw new Error('Argument should be a Number.');
-//         }
-//         const url = this.endpoint + '?size=' + size;
+    send(size: number) {
+        const url = this.endpoint + '?_page=0&_limit=' + size;
 
-//         return new Promise((resolve, reject) => {
-//             get(url, (error, meta, body) => {
-//                 if (meta.status === 200) {
-//                     const { data } = JSON.parse(body);
-//                     console.log(data);
-//                     resolve(data);
-//                 } else {
-//                     reject(`We have error, status code: ${meta.status}`);
-//                 }
-//             });
-//         });
-//     }
-// }
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then((res) => {
+                    if (res.ok) {
+                        resolve(res.json());
+                    } else {
+                        resolve(new Error(`We have error, status code: ${res.status}`));
+                    }
+                })
+                .catch((error) => {
+                    reject(new Error(`We have error, ${error}`));
+                });
+        });
+    }
+}
 
+const url = 'https://jsonplaceholder.typicode.com/posts';
+const countries = new Countries(url);
 
-// const url = 'https://lab.lectrum.io/geo/api/countries';
-// const countries = new Countries(url);
-
-// (async() => {
-//     try {
-//         const data = await countries.send(2);
-//         console.log(data); // массив стран
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })();
+(async() => {
+    try {
+        const data = await countries.send(2);
+        console.log(data); // массив стран
+    } catch (error) {
+        console.log(error);
+    }
+})();
 
 
 export const taskNumber = 4;
@@ -88,9 +83,7 @@ export const taskDescription = `Задача 4
 
 `;
 
-export const code = `const get = require('fetch').fetchUrl;
-
-class Countries {
+export const code = `class Countries {
     constructor(endpoint) {
         if (typeof endpoint !== 'string') {
             throw new Error('Endpoint should be a String.');
@@ -101,34 +94,28 @@ class Countries {
         if (typeof size !== 'number') {
             throw new Error('Argument should be a Number.');
         }
-        const url = this.endpoint + '?size=' + size;
+        const url = this.endpoint + '?_page=0&_limit=' + size;
         return new Promise( (resolve, reject) => {
-            get(url, (error, meta, body) => {
-
-                if (meta.status === 200) {
-                    const { data } = JSON.parse(body);
-                    console.log(data);
-                    resolve(data);
-                } else {
-                    reject(\`We have error, status code: \${meta.status}\`);
-                }
-    
-            });
+            window.fetch(url)
+                .then((res) => {
+                    if (res.ok) {
+                        resolve(res.json());
+                    } else {
+                        resolve(\`We have error, status code: \${ res.status }\`);
+                    }
+                })
+                .catch((error) => {
+                    reject(\`We have error, \${ error }\`);
+                });
         });
     }
 }
 
 
-const url = 'https://lab.lectrum.io/geo/api/countries';
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
 const countries = new Countries(url);
-
-(async() => {
-    try {
-        const data = await countries.send(2);
-        console.log(data); // массив стран
-    } catch (error) {
-        console.log(error);
-    }
-})();
-
+countries.send(5)
+    .then((res) => console.log('res: ', res))
+    .catch((error) => console.log('err', error));
 `;

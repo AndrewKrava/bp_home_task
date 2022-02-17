@@ -1,5 +1,5 @@
 // Core
-import React, { FC, useState } from 'react';
+import React, { FC, lazy, useState } from 'react';
 
 // Bus
 // import {} from '../../../bus/'
@@ -8,8 +8,9 @@ import React, { FC, useState } from 'react';
 import * as S from './styles';
 
 // Components
-import { lessons } from '../../components';
 import { JsPlayground, Select } from '../../elements';
+import { lessons } from '../../components';
+
 
 // Types
 type PropTypes = {
@@ -49,35 +50,41 @@ export const Jscontainer: FC<PropTypes> = () => {
 
     return (
         <S.Container>
-            Container: Jscontainer
+            <div className = 'container-title'>
+                Container: Jscontainer
+            </div>
 
-            <Select
-                cb = { lessonChangeHandler }
-                defaultSelected = { !!taskList }
-                selectIdName = 'choose-lesson'
-                selectOptions = { lessons.map((lesson) => lesson.title) }
-                selectTitle = 'Choose a lesson:'
-            />
+            <div className = 'select-options'>
+                <span>
+                    <Select
+                        cb = { lessonChangeHandler }
+                        defaultSelected = { !!taskList }
+                        selectIdName = 'choose-lesson'
+                        selectOptions = { lessons.map((lesson) => lesson.title) }
+                        selectTitle = 'Choose a lesson:'
+                    />
 
-            {
-                taskList
-                    ? (
-                        <Select
-                            cb = { taskChangeHandler }
-                            defaultSelected = { !!task }
-                            selectIdName = 'choose-task'
-                            selectOptions = { taskList.map((task) => task.taskNumber) }
-                            selectTitle = 'Choose a task:'
-                        />
-                    )
-                    : null
-            }
+                    {
+                        taskList
+                            ? (
+                                <Select
+                                    cb = { taskChangeHandler }
+                                    defaultSelected = { !!task }
+                                    selectIdName = 'choose-task'
+                                    selectOptions = { taskList.map((task) => task.taskNumber) }
+                                    selectTitle = 'Choose a task:'
+                                />
+                            )
+                            : null
+                    }
 
-            {
-                task
-                    ? <JsPlayground task = { task } />
-                    : null
-            }
+                    {
+                        task
+                            ? <JsPlayground task = { task } />
+                            : null
+                    }
+                </span>
+            </div>
 
 
         </S.Container>

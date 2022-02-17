@@ -15,8 +15,8 @@ export const Public: FC = () => {
         <Routes>
             <Route
                 element = { <Main /> }
-                path = '' >
-                {/* <Route index element={<Home />} /> */}
+                path = '/' >
+
                 <Route
                     element = { <JavaScript /> }
                     path = 'js'>
@@ -39,7 +39,13 @@ export const Public: FC = () => {
                     />
 
                 </Route>
+
             </Route>
+            <Route
+                // element = { <Main /> }
+                element = { <Navigate to = '/' /> }
+                path = '*'
+            />
         </Routes>
     );
 };
