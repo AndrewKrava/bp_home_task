@@ -29,7 +29,6 @@ const array = [
     },
     'Приветствую.',
 ];
-    // const array1 = [];
 
 // Решение
 
@@ -78,7 +77,7 @@ export const code = `const array = [
     },
     'Приветствую.',
 ];
-const array1 = [];
+
 
 // Решение
 
@@ -91,5 +90,5 @@ function inspect(arr) {
 
 const result = inspect(array);
 console.log(result); // [ 7, 11, 7, 12 ]
-
+console.log(inspect([]));
 `;

@@ -8,8 +8,13 @@ export const Container = styled.section`
     & .select-options {
         /* display: block; */
         /* margin: 0 auto; */
-        /* background-color: aqua; */
-          display: flex;
-  justify-content: center;
+
+        display: flex;
+        justify-content: center;
+
+        &>div {
+            padding-left: 20px;;
+        }
     }
+
 `;

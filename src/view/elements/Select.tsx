@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 
 const Container = styled.div`
-
+    select {
+        margin-left: 10px;;
+    }
 `;
 
 // Types
@@ -16,7 +18,8 @@ type PropTypes = {
     defaultSelected?: boolean;
 }
 
-
+// TODO Refactor select option
+//Warning: Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
 export const Select: FC<PropTypes> = (props) => {
     return (
         <Container>
