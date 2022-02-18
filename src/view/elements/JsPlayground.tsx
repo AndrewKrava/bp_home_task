@@ -2,7 +2,7 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import Playground from 'javascript-playgrounds';
-import { CompilerOptions, PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
+import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
 import { v4 as uuidv4 } from 'uuid';
 
 
