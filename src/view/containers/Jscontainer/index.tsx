@@ -27,7 +27,6 @@ type Task = {
 // TODO Refactor select option
 //Warning: Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
 export const Jscontainer: FC<PropTypes> = () => {
-    // eslint-disable-next-line max-len
     const [ taskList, setTaskList ] = useState<Task[] | null>(null);
     const [ task, setTask ] = useState<Task | null>(null);
 
