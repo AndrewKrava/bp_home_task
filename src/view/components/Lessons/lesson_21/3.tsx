@@ -25,17 +25,17 @@ function send(url: string) {
         contentType: 'application/json',
     };
 
-    return new Promise((resolve, reject) => {
-        fetch(url, options, (error, meta, body) => {
-            if (meta.status === 200) {
-                const { data } = JSON.parse(body);
-                console.log(data);
-                resolve(data);
-            } else {
-                reject(`We have error, status code: ${meta.status}`);
-            }
-        });
-    });
+    // return new Promise((resolve, reject) => {
+    // fetch(url, options, (error, data) => {
+    // if (meta.status === 200) {
+    //     const { data } = JSON.parse(body);
+    //     console.log(data);
+    //     resolve(data);
+    // } else {
+    //     reject(`We have error, status code: ${meta.status}`);
+    // }
+    // });
+    // });
 }
 
 
@@ -43,13 +43,13 @@ function send(url: string) {
 
 const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
 
-send(url)
-    .then((data) => {
-        console.log(data);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+// send(url)
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
 
 export const taskNumber = 3;
 
@@ -84,15 +84,18 @@ function send(url) {
         'contentType': 'application/json'
       };
     return new Promise( (resolve, reject) => {
-        fetch(url, options, (error, meta, body) => {
-            if (meta.status === 200) {
-                const { data } = JSON.parse(body);
-                console.log(data);
-                resolve(data);
-            } else {
-                reject(\`We have error, status code: \${meta.status}\`);
+        fetch(url, (error, meta, body) => {
+            if (error) {
+                return console.log('ERROR', error.message || error);
             }
+        
+            console.log('META INFO');
+            console.log(meta);
+        
+            console.log('BODY');
+            console.log(body.toString('utf-8'));
         });
+        
     });
 }
 
