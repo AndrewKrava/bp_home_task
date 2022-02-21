@@ -18,38 +18,6 @@
 */
 
 function send(url: string) {
-<<<<<<< HEAD
-    var options = {
-        method:      'GET',
-        contentType: 'application/json',
-    };
-
-    // return new Promise((resolve, reject) => {
-    // fetch(url, options, (error, data) => {
-    // if (meta.status === 200) {
-    //     const { data } = JSON.parse(body);
-    //     console.log(data);
-    //     resolve(data);
-    // } else {
-    //     reject(`We have error, status code: ${meta.status}`);
-    // }
-    // });
-    // });
-}
-
-
-//После рефакторинга
-
-const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
-
-// send(url)
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
-=======
     return new Promise((resolve, reject) => {
         window.fetch(url)
             .then((res) => {
@@ -74,7 +42,6 @@ send(url)
     .catch((error) => {
         console.log(error);
     });
->>>>>>> bd39f3784acfa5be2c8cdba2e720ba90378f56b8
 
 
 export const taskNumber = 3;
@@ -99,25 +66,6 @@ export const taskDescription = `Задача 3
 
 export const code = `function send(url) {
     return new Promise( (resolve, reject) => {
-<<<<<<< HEAD
-        fetch(url, (error, meta, body) => {
-            if (error) {
-                return console.log('ERROR', error.message || error);
-            }
-        
-            console.log('META INFO');
-            console.log(meta);
-        
-            console.log('BODY');
-            console.log(body.toString('utf-8'));
-        });
-        
-    });
-}
-
-
-const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
-=======
         window.fetch(url)
             .then(res => {
                 if (res.ok) {
@@ -134,7 +82,6 @@ const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
 
 
 const url = 'https://jsonplaceholder.typicode.com/users';
->>>>>>> bd39f3784acfa5be2c8cdba2e720ba90378f56b8
 send(url)
     .then(data => {
         console.log(data);
