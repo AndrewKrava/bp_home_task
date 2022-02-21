@@ -1,5 +1,5 @@
 // Core
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -12,24 +12,34 @@ const Container = styled.div`
 // Types
 type PropTypes = {
     selectOptions: string[] | number[];
-    cb: Function;
+    callback: Function;
     selectIdName: string;
     selectTitle: string;
-    defaultSelected?: boolean;
+    shouldUseDefault?: boolean;
 }
 
-// TODO Refactor select option
-//Warning: Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
+
 export const Select: FC<PropTypes> = (props) => {
+    const [ valueState, setValueState ] = useState('Select your option');
+
+    const foo = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        props.callback(event);
+        setValueState(event.target.value);
+    };
+
+    if (props.shouldUseDefault && valueState !== 'Select your option') {
+        setValueState('Select your option');
+    }
+
     return (
         <Container>
             <label htmlFor = { props.selectIdName }>{props.selectTitle}</label>
             <select
                 id = { props.selectIdName }
-                onChange = { (event) =>  props.cb(event) }>
+                value = { valueState }
+                onChange = { (event) => foo(event) }>
                 <option
-                    disabled = { props.defaultSelected }
-                    selected = { !props.defaultSelected }
+                    disabled
                     value = 'Select your option'>Select your option
                 </option>
                 {
