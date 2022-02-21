@@ -30,23 +30,27 @@ export const Jscontainer: FC<PropTypes> = () => {
     const [ lesson, setLesson ] = useState<Task[] | null>(null);
     const [ task, setTask ] = useState<Task | null>(null);
 
-    function lessonChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+    // const [ taskNumber, setTaskNumber ] = useState('Select please');
+
+    const lessonChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const lesson = lessons.find((lesson) => lesson.title === event.target.value);
 
         if (lesson) {
             setTask(null);
+            // setTaskNumber('Select please');
             setLesson(lesson?.tasks);
         }
-    }
+    };
 
-    function taskChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+    const taskChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         if (lesson) {
             const task = lesson?.find((task) => task.taskNumber === Number(event.target.value));
             if (task) {
                 setTask(task);
+                // setTaskNumber(taskNumber);
             }
         }
-    }
+    };
 
     return (
         <S.Container>
@@ -71,6 +75,7 @@ export const Jscontainer: FC<PropTypes> = () => {
                                 selectIdName = 'choose-task'
                                 selectOptions = { lesson.map((task) => task.taskNumber) }
                                 selectTitle = 'Choose a task:'
+                                // value = { taskNumber }
                             />
                         )
                         : null
