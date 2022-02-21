@@ -12,10 +12,9 @@ const Container = styled.div`
 // Types
 type PropTypes = {
     selectOptions: string[] | number[];
-    cb: Function;
+    callback: Function;
     selectIdName: string;
     selectTitle: string;
-    defaultSelected?: boolean;
 }
 
 // TODO Refactor select option
@@ -25,11 +24,11 @@ export const Select: FC<PropTypes> = (props) => {
         <Container>
             <label htmlFor = { props.selectIdName }>{props.selectTitle}</label>
             <select
+                defaultValue = 'Select your option'
                 id = { props.selectIdName }
-                onChange = { (event) =>  props.cb(event) }>
+                onChange = { (event) => props.callback(event) }>
                 <option
-                    disabled = { props.defaultSelected }
-                    selected = { !props.defaultSelected }
+                    disabled
                     value = 'Select your option'>Select your option
                 </option>
                 {
