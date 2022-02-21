@@ -19,4 +19,10 @@ export const GlobalStyles = createGlobalStyle`
     input[type=number] {
         -moz-appearance: textfield;
     }
+
+    .main-app {
+        & .page-title {
+            margin: 10px;
+        }
+    }
 `;

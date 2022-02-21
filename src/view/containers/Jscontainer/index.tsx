@@ -8,8 +8,9 @@ import React, { FC, useState } from 'react';
 import * as S from './styles';
 
 // Components
-import { lessons } from '../../components';
 import { JsPlayground, Select } from '../../elements';
+import { lessons } from '../../components';
+
 
 // Types
 type PropTypes = {
@@ -25,59 +26,69 @@ type Task = {
 
 
 export const Jscontainer: FC<PropTypes> = () => {
-    // eslint-disable-next-line max-len
-    const [ taskList, setTaskList ] = useState<Task[] | null>(null);
+    const [ lesson, setLesson ] = useState<Task[] | null>(null);
     const [ task, setTask ] = useState<Task | null>(null);
+    const [ shouldUseDefault, setShouldUseDefault ] = useState(true);
 
-    function lessonChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+    const lessonChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const lesson = lessons.find((lesson) => lesson.title === event.target.value);
 
         if (lesson) {
             setTask(null);
-            setTaskList(lesson?.tasks);
+            setShouldUseDefault(true);
+            setLesson(lesson?.tasks);
         }
-    }
+    };
 
-    function taskChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-        if (taskList) {
-            const task = taskList?.find((task) => task.taskNumber === Number(event.target.value));
+    const taskChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        if (lesson) {
+            const task = lesson?.find((task) => task.taskNumber === Number(event.target.value));
             if (task) {
+                if (shouldUseDefault) {
+                    setShouldUseDefault(false);
+                }
                 setTask(task);
             }
         }
-    }
+    };
 
     return (
         <S.Container>
-            Container: Jscontainer
+            <div className = 'container-title'>
+                Container: Jscontainer
+            </div>
 
-            <Select
-                cb = { lessonChangeHandler }
-                defaultSelected = { !!taskList }
-                selectIdName = 'choose-lesson'
-                selectOptions = { lessons.map((lesson) => lesson.title) }
-                selectTitle = 'Choose a lesson:'
-            />
+            <div className = 'select-options'>
 
-            {
-                taskList
-                    ? (
-                        <Select
-                            cb = { taskChangeHandler }
-                            defaultSelected = { !!task }
-                            selectIdName = 'choose-task'
-                            selectOptions = { taskList.map((task) => task.taskNumber) }
-                            selectTitle = 'Choose a task:'
-                        />
-                    )
-                    : null
-            }
+                <Select
+                    callback = { lessonChangeHandler }
+                    selectIdName = 'choose-lesson'
+                    selectOptions = { lessons.map((lesson) => lesson.title) }
+                    selectTitle = 'Choose a lesson:'
+                />
 
-            {
-                task
-                    ? <JsPlayground task = { task } />
-                    : null
-            }
+                {
+                    lesson
+                        ? (
+                            <Select
+                                callback = { taskChangeHandler }
+                                selectIdName = 'choose-task'
+                                selectOptions = { lesson.map((task) => task.taskNumber) }
+                                selectTitle = 'Choose a task:'
+                                shouldUseDefault = { shouldUseDefault }
+                            />
+                        )
+                        : null
+                }
+            </div>
+
+            <div className = 'playgound-section'>
+                {
+                    task
+                        ? <JsPlayground task = { task } />
+                        : null
+                }
+            </div>
 
 
         </S.Container>

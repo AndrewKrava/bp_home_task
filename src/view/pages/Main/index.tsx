@@ -16,7 +16,7 @@ const Main: FC = () => {
     const { pathname } = useLocation();
 
     return (
-        <Container>
+        <Container className = 'main-app'>
             <Nav>
                 <Link to = '/js'>JavaScript</Link>
                 <Link to = '/react'>React</Link>

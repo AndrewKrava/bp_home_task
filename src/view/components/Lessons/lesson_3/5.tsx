@@ -19,7 +19,7 @@ const array = [ 1, 2, -4, 3, -9, -1, 7 ];
 function isPositive(num: number) {
     return num > 0;
 }
-const resultArr = [];
+const resultArr: number[] = [];
 for (const el of array) {
     if (isPositive(el)) {
         resultArr.push(el);
@@ -69,11 +69,16 @@ for (const el of array) {
     }
 }
 
-console.log(resultArr);
+console.log('result array: ', resultArr);
 
 /* не удалять */
-isPositive(-3); // false
-isPositive(3); // true
-// isPositive('s'); // Error: parameter type is not a Number
+try {
+    console.log(isPositive(-3)); // false
+    console.log(isPositive(3)); // true
+    isPositive('s'); // Error: parameter type is not a Number
+} catch (error) {
+    console.log('Error: ', error.message);
+}
+
 
 `;

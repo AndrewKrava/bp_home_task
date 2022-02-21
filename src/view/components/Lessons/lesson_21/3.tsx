@@ -17,9 +17,8 @@
 ```javascript
 */
 
-// const fetch = require('fetch');
-
 function send(url: string) {
+<<<<<<< HEAD
     var options = {
         method:      'GET',
         contentType: 'application/json',
@@ -50,6 +49,33 @@ const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
 //     .catch((error) => {
 //         console.log(error);
 //     });
+=======
+    return new Promise((resolve, reject) => {
+        window.fetch(url)
+            .then((res) => {
+                if (res.ok) {
+                    resolve(res.json());
+                } else {
+                    reject(new Error(`We have error, status code: ${ res.status }`));
+                }
+            })
+            .catch((error) => {
+                reject(new Error(`We have error, ${error}`));
+            });
+    });
+}
+
+
+const url = 'https://jsonplaceholder.typicode.com/users';
+send(url)
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+>>>>>>> bd39f3784acfa5be2c8cdba2e720ba90378f56b8
+
 
 export const taskNumber = 3;
 
@@ -71,19 +97,9 @@ export const taskDescription = `Задача 3
 `;
 
 
-export const code = `
-// const ky = require('ky');
-// console.log('>>>>>>', ky);
-
-const fetch = require('fetch');
-console.log('>>>>>>', fetch);
-
-function send(url) {
-    var options = {
-        'method' : 'GET',
-        'contentType': 'application/json'
-      };
+export const code = `function send(url) {
     return new Promise( (resolve, reject) => {
+<<<<<<< HEAD
         fetch(url, (error, meta, body) => {
             if (error) {
                 return console.log('ERROR', error.message || error);
@@ -101,6 +117,24 @@ function send(url) {
 
 
 const url = 'https://my-json-server.typicode.com/AndrewKrava/json-server';
+=======
+        window.fetch(url)
+            .then(res => {
+                if (res.ok) {
+                    resolve(res.json());
+                } else {
+                   reject(\`We have error, status code: \${ res.status }\`);
+                }
+            })
+            .catch((error) => {
+                reject(\`We have error, \${error}\`); 
+            });
+    })        
+}            
+
+
+const url = 'https://jsonplaceholder.typicode.com/users';
+>>>>>>> bd39f3784acfa5be2c8cdba2e720ba90378f56b8
 send(url)
     .then(data => {
         console.log(data);
@@ -108,4 +142,5 @@ send(url)
     .catch(error => {
         console.log(error);
     });
+
 `;

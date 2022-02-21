@@ -16,13 +16,13 @@ import { CommentsCounterReact, LikesCounterReact } from '../../elements';
 // Styles
 import * as S from './styles';
 
+//temp
+import testData from '../../../bus/test_data/news.json';
+
 // Types
 type PropTypes = {
     /* type props here */
 }
-
-//temp
-import testData from '../../../bus/test_data/news.json';
 
 
 export const NewsReact: FC<PropTypes> = () => {

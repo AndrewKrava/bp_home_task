@@ -57,9 +57,7 @@ export const code = `function upperCaseFirst(str) {
     if (str.length === 0) {
         return '';
     }
-    const result =  str[ 0 ].toUpperCase() + str.slice(1);
-
-    return result;
+    return str[ 0 ].toUpperCase() + str.slice(1);
 }
 
 try {

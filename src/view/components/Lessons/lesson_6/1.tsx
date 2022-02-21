@@ -24,13 +24,12 @@ const forEach: Filter = (array, fn) => {
     }
 };
 
-const result = forEach(array, function(item, index, arrayRef) {
+forEach(array, function(item, index, arrayRef) {
     console.log(item); // элемент массива
     console.log(index); // индекс элемента
     console.log(arrayRef); // ссылка на обрабатываемый массив
 });
 
-console.log(result); // undefined
 
 // exports.forEach = forEach;
 
@@ -70,12 +69,9 @@ function forEach(array, fn) {
     }
 }
 
-const result = forEach(array, function(item, index, arrayRef) {
+forEach(array, function(item, index, arrayRef) {
     console.log(item); // элемент массива
     console.log(index); // индекс элемента
     console.log(arrayRef); // ссылка на обрабатываемый массив
 });
-
-console.log(result); // undefined
-
 `;

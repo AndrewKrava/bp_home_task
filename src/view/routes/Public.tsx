@@ -1,6 +1,6 @@
 // Core
 import React, { FC } from 'react';
-import { useRoutes, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 
 // Container
@@ -15,8 +15,8 @@ export const Public: FC = () => {
         <Routes>
             <Route
                 element = { <Main /> }
-                path = '' >
-                {/* <Route index element={<Home />} /> */}
+                path = '/' >
+
                 <Route
                     element = { <JavaScript /> }
                     path = 'js'>
@@ -39,10 +39,19 @@ export const Public: FC = () => {
                     />
 
                 </Route>
+
             </Route>
+            <Route
+                // element = { <Main /> }
+                element = { <Navigate to = '/' /> }
+                path = '*'
+            />
         </Routes>
     );
 };
+
+
+// remove
 //<Route path=":teamId" element={<Team />} />
 //<Route index element={<LeagueStandings />} />
 

@@ -171,7 +171,7 @@ export const code = `class DB {
     #setIds = new Set();
     #usersMap = new Map();
 
-    #setId() {
+    _setId() {
         DB.#id += 1;
     }
     getId() {
@@ -195,9 +195,9 @@ export const code = `class DB {
             throw new Error('Salary is required field and should be type of Number.');
         }
 
-        this.#setId();
+        this._setId();
         while (this.#setIds.has(this.getId())) {
-            this.#setId();
+            this._setId();
         }
         this.#setIds.add(this.getId());
 
@@ -218,7 +218,7 @@ export const code = `class DB {
 
     readAll() {
         if (arguments[0]) {
-            throw new Error('Function doesn\'t accept any arguments.');
+            throw new Error('Function does not accept any arguments.');
         }
         return [...this.#usersMap.values()];
     }
@@ -228,7 +228,7 @@ export const code = `class DB {
             throw new Error('Id should be type of String.');
         }
         if (!this.#usersMap.has(id)) {
-            throw new Error('This Id doesn\'t exist.');
+            throw new Error('This Id does not exist.');
         }
         const user = this.#usersMap.get(id);
         const userKeys = Object.keys(user);
@@ -242,7 +242,7 @@ export const code = `class DB {
 
     delete(id) {
         if (!this.#usersMap.has(id)) {
-            throw new Error('This Id doesn\'t exist.');
+            throw new Error('This Id does not exist.');
         }
         this.#usersMap.delete(id);
     }

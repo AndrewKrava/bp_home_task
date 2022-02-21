@@ -1,22 +1,35 @@
 // Core
 import React, { FC, useState } from 'react';
+import styled from 'styled-components';
+import Playground from 'javascript-playgrounds';
+import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
 import { v4 as uuidv4 } from 'uuid';
 
-import styled from 'styled-components';
 
-type Task = {
-    code?: string;
-    taskDescription?: string;
-}
-// Types
-type PropTypes = {
-    task: Task;
-}
+// Styles
+const Container = styled.div`
 
-import Playground from 'javascript-playgrounds';
+    .playground {
+        display: flex;
+        margin: auto;
+    }
+    div {
+        margin: 10px;
+    }
+`;
 
-import { PublicPaneOptions } from 'javascript-playgrounds/dist/src/utils/options';
-
+// Configuration for Playground libruary
+const styles = `
+    .CodeMirror-scroll {
+        background-color:   #eeeeee;
+    }
+    .cm-s-react .CodeMirror-linenumber {
+        color: black;
+    }
+    .CodeMirror-gutter {
+        background-color:   #eeeeee;
+    }
+`;
 
 const player: PublicPaneOptions = {
     type:     'player',
@@ -33,30 +46,17 @@ const player: PublicPaneOptions = {
     },
 
 };
+const modules = [{ name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' }];
 
 
-const styles = `
-    .CodeMirror-scroll {
-        background-color: #eeeeee;
+// Types
+type PropTypes = {
+    task: {
+        code?: string,
+        taskDescription?: string
     }
-    .cm-s-react .CodeMirror-linenumber {
-        color: black;
-    }
-    .CodeMirror-gutter {
-        background-color: #eeeeee;
-    }
-`;
 
-const Container = styled.div`
-    .playground {
-        display: flex;
-        margin: auto;
-    }
-    div {
-        margin: 10px;
-    }
-`;
-
+<<<<<<< HEAD
 const modules = [
     { name: 'moment', globalName: 'moment', url: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js' },
     { name: 'fetch', globalName: 'fetch', url: 'https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js' },
@@ -65,21 +65,22 @@ const modules = [
 
 
 ];
+=======
+}
+>>>>>>> bd39f3784acfa5be2c8cdba2e720ba90378f56b8
 
 export const JsPlayground: FC<PropTypes> = (props) => {
-    const [ playgroundWidth, setPlagroundWidth ] = useState(60);
+    const [ playgroundWidth, setPlagroundWidth ] = useState(80);
     const key = uuidv4();
 
     function changePlaygroundWidth(event: React.ChangeEvent<HTMLInputElement>): void {
         const value = Number(event.target.value);
-        if (value > 50 && 100) {
-            setPlagroundWidth(value - 5);
-        }
+        setPlagroundWidth(value);
     }
 
     return (
         <Container>
-            <div className = 'js-title'>El: JsPlayground For Testing</div>
+            <div className = 'js-title'> Element JsPlayground</div>
 
             <div className = 'task-description'>
                 <pre>{props.task.taskDescription}</pre>
@@ -88,9 +89,11 @@ export const JsPlayground: FC<PropTypes> = (props) => {
             <div>
                 <label htmlFor = 'input-playground-width'>Width ⚙️</label>
                 <input
-                    defaultValue = { 60 }
+                    defaultValue = { 80 }
                     id = 'input-playground-width'
-                    type = 'number'
+                    max = { 95 }
+                    min = { 50 }
+                    type = 'range'
                     onChange = { (value) => changePlaygroundWidth(value) }
                 />
             </div>
@@ -102,7 +105,7 @@ export const JsPlayground: FC<PropTypes> = (props) => {
                 key = { key }
                 modules = { modules }
                 panes = { [ 'editor', player ] }
-                style = {{ width: playgroundWidth + '%', height: 800 }}
+                style = {{ width: playgroundWidth + '%', height: 700 }}
             />
 
         </Container>
