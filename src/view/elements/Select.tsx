@@ -15,29 +15,26 @@ type PropTypes = {
     callback: Function;
     selectIdName: string;
     selectTitle: string;
-    value?: string | number;
+    shouldUseDefault?: boolean;
 }
 
-// TODO Refactor select option
-//Warning: Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
+
 export const Select: FC<PropTypes> = (props) => {
-    // const [lesson, setLesson] = useState<Task[] | null>(null);
-    // const [task, setTask] = useState<Task | null>(null);
-
     const [ valueState, setValueState ] = useState('Select your option');
-
-    console.log('Render CMP', props.selectTitle);
 
     const foo = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.callback(event);
         setValueState(event.target.value);
     };
 
+    if (props.shouldUseDefault && valueState !== 'Select your option') {
+        setValueState('Select your option');
+    }
+
     return (
         <Container>
             <label htmlFor = { props.selectIdName }>{props.selectTitle}</label>
             <select
-                // defaultValue = 'Select your option'
                 id = { props.selectIdName }
                 value = { valueState }
                 onChange = { (event) => foo(event) }>

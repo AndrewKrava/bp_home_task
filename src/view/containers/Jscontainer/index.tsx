@@ -24,20 +24,18 @@ type Task = {
     taskDescription: string;
 }
 
-// TODO Refactor select option
-//Warning: Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
+
 export const Jscontainer: FC<PropTypes> = () => {
     const [ lesson, setLesson ] = useState<Task[] | null>(null);
     const [ task, setTask ] = useState<Task | null>(null);
-
-    // const [ taskNumber, setTaskNumber ] = useState('Select please');
+    const [ shouldUseDefault, setShouldUseDefault ] = useState(true);
 
     const lessonChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const lesson = lessons.find((lesson) => lesson.title === event.target.value);
 
         if (lesson) {
             setTask(null);
-            // setTaskNumber('Select please');
+            setShouldUseDefault(true);
             setLesson(lesson?.tasks);
         }
     };
@@ -46,8 +44,10 @@ export const Jscontainer: FC<PropTypes> = () => {
         if (lesson) {
             const task = lesson?.find((task) => task.taskNumber === Number(event.target.value));
             if (task) {
+                if (shouldUseDefault) {
+                    setShouldUseDefault(false);
+                }
                 setTask(task);
-                // setTaskNumber(taskNumber);
             }
         }
     };
@@ -75,7 +75,7 @@ export const Jscontainer: FC<PropTypes> = () => {
                                 selectIdName = 'choose-task'
                                 selectOptions = { lesson.map((task) => task.taskNumber) }
                                 selectTitle = 'Choose a task:'
-                                // value = { taskNumber }
+                                shouldUseDefault = { shouldUseDefault }
                             />
                         )
                         : null
