@@ -2,7 +2,6 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 
-
 const Container = styled.div`
     select {
         margin-left: 10px;;
