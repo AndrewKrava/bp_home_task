@@ -16,9 +16,9 @@ export const useCounter = () => {
     const counterState = useSelector((state) => state.counter); // Add counter to ./src/init/redux/index.ts
 
 
-    const increment = () => {
-        console.log('>>> ', counterState.counter);
+    // const counter = counterState.counter;
 
+    const increment = () => {
         dispatch(counterActions.setCounter(String(Number(counterState.counter) + 1)));
     };
 

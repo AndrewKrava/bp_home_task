@@ -3,8 +3,6 @@
  */
 
 
-// import counterReducer, { counterActions } from '../slice';
-
 // Component
 import Counter from '../../../view/pages/Counter';
 
@@ -15,36 +13,41 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { configureStore } from '@reduxjs/toolkit';
 
-// Redux
+// Reducer & hook
 import { useCounter } from '..';
-import counterRerdus from '../slice';
+import counter from '../slice';
+
+
+// import store
+import { store as reduxStore } from '../../../init';
+
+export const store = configureStore({
+    reducer: {
+        counter,
+    },
+});
 
 
 describe('test hook useCounter', () => {
-    // const { result } = renderHook(() => useCounter());
-
-
+    const Wrapper: (FC) = ({ children }) => (
+        <ReduxProvider store = { reduxStore }>{children}
+        </ReduxProvider>
+    );
     test('init state', () => {
-        const store = configureStore({
-            reducer: { counterRerdus },
-        });
-
-        const Wrapper: (FC) = ({ children }) => (
-            <ReduxProvider store = { store }>{children}
-            </ReduxProvider>
-        );
-
         const { result } = renderHook(() => useCounter(), { wrapper: Wrapper });
+
+        expect(result.current.counterState).toEqual({
+            counter:    '0',
+            isFetching: false,
+        });
 
         act(() => {
             result.current.increment();
         });
 
+        expect(result.current.counterState.counter).toBe('1');
 
-        expect(result.current).toEqual({
-            counter:    '0',
-            isFetching: false,
-        });
+        // const {} = render();
     });
 });
 
@@ -65,11 +68,14 @@ describe('test hook useCounter', () => {
  *
  */
 
-
 // const initState = {
 //     counter:    '0',
 //     isFetching: false,
 // };
+
+
+// for test ui
+// import { render } from '@testing-library/react';
 
 // describe('test reducer and action', () => {
 //     test('counter state should be 5', () => {
