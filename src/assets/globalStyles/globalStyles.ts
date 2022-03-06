@@ -22,7 +22,10 @@ export const GlobalStyles = createGlobalStyle`
 
     .main-app {
         & .page-title {
+            display: flex;
             margin: 10px;
+            justify-content: center;
+            font-size: larger;
         }
     }
 `;

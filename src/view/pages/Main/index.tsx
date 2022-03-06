@@ -1,6 +1,6 @@
 // Core
 import React, { FC } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 
 // Components
@@ -15,11 +15,16 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 const Main: FC = () => {
     const { pathname } = useLocation();
 
+    const navigate = useNavigate();
+    const navToCounter = () => {
+        navigate('counter');
+    };
+
     return (
         <Container className = 'main-app'>
+            <div className = 'page-title'>Main Page</div>
             <Nav>
-                <Link to = '/js'>JavaScript</Link>
-                <Link to = '/react'>React</Link>
+                <button onClick = { navToCounter }>Counter Page</button>
             </Nav>
             <Breadcrumbs>
                 <Crumb to = '/'>
