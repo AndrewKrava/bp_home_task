@@ -3,11 +3,7 @@
  */
 
 
-// Component
-import Counter from '../../../view/pages/Counter';
-
 // Core
-// import  { render } from '@testing-library/react';
 import React, { FC } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { act, renderHook } from '@testing-library/react-hooks';
@@ -18,10 +14,7 @@ import { useCounter } from '..';
 import counter from '../slice';
 
 
-// import store
-import { store as reduxStore } from '../../../init';
-
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         counter,
     },
@@ -30,34 +23,35 @@ export const store = configureStore({
 
 describe('test hook useCounter', () => {
     const Wrapper: (FC) = ({ children }) => (
-        <ReduxProvider store = { reduxStore }>{children}
+        <ReduxProvider store = { store }>{children}
         </ReduxProvider>
     );
-    test('init state', () => {
-        const { result } = renderHook(() => useCounter(), { wrapper: Wrapper });
 
-        expect(result.current.counterState).toEqual({
+    let stateResult: any = null;
+
+    beforeEach(() => {
+        stateResult = renderHook(() => useCounter(), { wrapper: Wrapper }).result;
+    });
+
+    test('init state', () => {
+        expect(stateResult.current.counterState).toEqual({
             counter:    '0',
             isFetching: false,
         });
+    });
 
+    test('expect counte state will be 2', () => {
         act(() => {
-            result.current.increment();
+            stateResult.current.increment();
+        });
+        act(() => {
+            stateResult.current.increment();
         });
 
-        expect(result.current.counterState.counter).toBe('1');
-
-        // const {} = render();
+        expect(stateResult.current.counterState.counter).toBe('2');
     });
 });
 
-
-// describe('testing ui component', () => {
-//     const {} = render(<Counter />,
-//         {
-//             in
-//         });
-// });
 
 /**
  *
@@ -67,11 +61,6 @@ describe('test hook useCounter', () => {
  *
  *
  */
-
-// const initState = {
-//     counter:    '0',
-//     isFetching: false,
-// };
 
 
 // for test ui

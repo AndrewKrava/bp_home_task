@@ -23,10 +23,16 @@ const Counter: FC<PropTypes> = () => {
             <div className = 'page-title'>Page: Counter</div>
 
             <div className = 'counter-content'>
-                <p>Result: {counterState.counter}</p>
+                <p data-testid = 'result'>Result: {counterState.counter}</p>
 
-                <button onClick = { increment }>Increment</button>
-                <button onClick = { decrement }>Decrement</button>
+                <button
+                    data-testid = 'incr'
+                    onClick = { increment }>Increment
+                </button>
+                <button
+                    data-testid = 'decr'
+                    onClick = { decrement }>Decrement
+                </button>
 
             </div>
         </S.Container>
