@@ -22,7 +22,7 @@ const store = configureStore({
 
 
 describe('test hook useCounter', () => {
-    const Wrapper: (FC) = ({ children }) => (
+    const wrapper: (FC) = ({ children }) => (
         <ReduxProvider store = { store }>{children}
         </ReduxProvider>
     );
@@ -30,7 +30,7 @@ describe('test hook useCounter', () => {
     let stateResult: any = null;
 
     beforeEach(() => {
-        stateResult = renderHook(() => useCounter(), { wrapper: Wrapper }).result;
+        stateResult = renderHook(() => useCounter(), { wrapper }).result;
     });
 
     test('init state', () => {
